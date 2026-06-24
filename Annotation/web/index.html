@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Annotator (Web)</title>
+  <style>
+    :root {
+      --bg: #1e1e1e; --panel: #252526; --border: #3c3c3c;
+      --text: #e8e8e8; --muted: #9aa0a6; --accent: #007acc; --labels-bg: #161b22;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+    body { display: grid; grid-template-columns: 1fr 420px; }
+    .main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+    .video-wrap { flex: 1; min-height: 0; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+    video { width: 100%; height: 100%; max-height: 100%; background: #000; outline: none; }
+    .now-display {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid #007acc;
+      border-radius: 4px;
+      font-variant-numeric: tabular-nums;
+      font-size: 14px;
+      color: #7ec8ff;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .controls { display: flex; gap: 8px; align-items: center; padding: 8px 12px; background: var(--panel); border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .controls button, .controls select { background: #333; color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 6px 10px; cursor: pointer; }
+    .controls button:hover { border-color: var(--accent); }
+    .time { font-variant-numeric: tabular-nums; min-width: 150px; }
+    .sidebar { border-left: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; background: var(--panel); }
+    .labels-panel { flex: 3; min-height: 0; display: flex; flex-direction: column; background: var(--labels-bg); border-bottom: 2px solid var(--accent); }
+    .videos-panel { flex: 1; min-height: 0; max-height: 32vh; display: flex; flex-direction: column; }
+    h2 { margin: 0; padding: 10px 12px 4px; font-size: 13px; color: var(--muted); text-transform: uppercase; }
+    h2.labels-title { color: #7ec8ff; }
+    .meta { padding: 0 12px 8px; font-size: 11px; color: #9cdcfe; line-height: 1.35; word-break: break-all; }
+    .meta strong { color: #4ec9b0; }
+    input[type="search"] { width: calc(100% - 24px); margin: 0 12px 8px; padding: 8px; border-radius: 4px; border: 1px solid var(--border); background: #111; color: var(--text); }
+    .list { flex: 1; overflow: auto; margin: 0 8px 8px; border: 1px solid var(--border); border-radius: 4px; background: #111; min-height: 120px; }
+    .list button { display: block; width: 100%; text-align: left; padding: 6px 8px; border: none; border-bottom: 1px solid #222; background: transparent; color: var(--text); cursor: pointer; font-size: 12px; }
+    .list button:hover { background: #222; }
+    .list button.active { background: var(--accent); color: #fff; }
+    .list .empty { padding: 16px; color: var(--muted); font-size: 12px; text-align: center; }
+    .hint { padding: 8px 12px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); line-height: 1.45; flex-shrink: 0; }
+    .banner { display: none; padding: 8px 12px; background: #3a3218; color: #ffd666; font-size: 12px; }
+    .banner.show { display: block; }
+    .banner.error { background: #5a1d1d; color: #ffb4b4; }
+    .wizard { position: fixed; inset: 0; background: rgba(0,0,0,0.65); display: none; align-items: center; justify-content: center; z-index: 10; }
+    .wizard.open { display: flex; }
+    .wizard-panel { width: min(900px, 95vw); max-height: 80vh; overflow: auto; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .chip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+    .chip { padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: #111; cursor: pointer; text-align: center; }
+    .chip:hover, .chip.selected { border-color: var(--accent); background: #1a2a3a; }
+    .status { margin-left: auto; color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body tabindex="0">
+  <div class="main">
+    <div id="banner" class="banner"></div>
+    <div class="video-wrap">
+      <video id="player" preload="metadata" playsinline controls></video>
+      <div class="now-display" id="nowDisplay">frame — | pos —</div>
+    </div>
+    <div class="controls">
+      <button id="btnPlay" type="button">Play/Pause (Space)</button>
+      <button id="btnBack" type="button">◀ Frame</button>
+      <button id="btnFwd" type="button">Frame ▶</button>
+      <span class="time" id="timeLabel">00:00.000 / 00:00.000</span>
+      <span class="time" id="framePosLabel">frame — | pos —</span>
+      <label>Speed
+        <select id="speed">
+          <option value="1">1× TV</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+        </select>
+      </label>
+      <button id="btnAnnotate" type="button">New (Enter)</button>
+      <button id="btnEdit" type="button">Edit (E)</button>
+      <button id="btnDelete" type="button">Delete</button>
+      <button id="btnSave" type="button">Save</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <section class="labels-panel">
+      <h2 class="labels-title">ground_truth.json</h2>
+      <div class="meta" id="labelsMeta">Click a video to load labels.</div>
+      <div class="list" id="eventList"><div class="empty">No labels loaded</div></div>
+    </section>
+    <section class="videos-panel">
+      <h2 id="videosTitle">Dataset videos</h2>
+      <input id="videoSearch" type="search" placeholder="Search videos…" />
+      <div class="list" id="videoList"></div>
+    </section>
+    <p class="hint">
+      Space = normal play · ←/→ = one frame (paused) · Click label to jump · Enter/E edit · Ctrl+S save
+    </p>
+  </aside>
+
+  <div class="wizard" id="wizard">
+    <div class="wizard-panel">
+      <h3 id="wizardTitle">Select class</h3>
+      <div class="chip-grid" id="wizardChoices"></div>
+      <p class="hint">Enter next · Esc cancel</p>
+    </div>
+  </div>
+
+  <script>
+    let fps = 25;
+    let frameMs = 40;
+    let classes = { classes: [], teams: [], visibility: [] };
+    let currentVideo = null;
+    let currentHalf = 1;
+    let labelInfo = {};
+    let events = [];
+    let selectedEvent = -1;
+    let wizardStep = 0;
+    let wizardData = {};
+    let wizardMode = 'new';
+    let videoReady = false;
+    let usingProxy = false;
+    let pendingSeekMs = null;
+    let loadToken = 0;
+
+    let player = null;
+    const videoWrap = document.querySelector('.video-wrap');
+    const nowDisplay = document.getElementById('nowDisplay');
+    const videoList = document.getElementById('videoList');
+    const eventList = document.getElementById('eventList');
+    const labelsMeta = document.getElementById('labelsMeta');
+    const statusEl = document.getElementById('status');
+    const banner = document.getElementById('banner');
+    const wizard = document.getElementById('wizard');
+
+    function attachPlayerListeners(el) {
+      el.addEventListener('timeupdate', updateTimeLabel);
+      el.addEventListener('click', () => document.body.focus());
+    }
+
+    function recreatePlayer() {
+      loadToken++;
+      if (player) {
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+        player.remove();
+      }
+      player = document.createElement('video');
+      player.id = 'player';
+      player.preload = 'auto';
+      player.playsInline = true;
+      player.controls = true;
+      videoWrap.insertBefore(player, nowDisplay);
+      attachPlayerListeners(player);
+      videoReady = false;
+      return player;
+    }
+
+    function waitVideoEvent(el, eventName, urlTag, timeoutMs = 120000) {
+      return new Promise((resolve, reject) => {
+        const matches = () => {
+          const src = el.currentSrc || el.src || '';
+          return src.includes(urlTag);
+        };
+        const timer = setTimeout(() => {
+          cleanup();
+          reject(new Error('video load timeout'));
+        }, timeoutMs);
+        function cleanup() {
+          clearTimeout(timer);
+          el.removeEventListener(eventName, onOk);
+          el.removeEventListener('error', onErr);
+        }
+        function onOk() {
+          if (!matches()) return;
+          cleanup();
+          resolve();
+        }
+        function onErr() {
+          cleanup();
+          reject(new Error(el.error ? el.error.message : 'video error'));
+        }
+        el.addEventListener(eventName, onOk);
+        el.addEventListener('error', onErr, { once: true });
+      });
+    }
+
+    async function loadVideoStream(path, seekMs = 0) {
+      const token = ++loadToken;
+      const el = player;
+      if (!el) return;
+      videoReady = false;
+      const urlTag = encodeURIComponent(path);
+      const url = `/api/video?path=${urlTag}&original=1&_=${Date.now()}`;
+      el.src = url;
+      el.load();
+      try {
+        await waitVideoEvent(el, 'loadedmetadata', urlTag);
+        if (token !== loadToken || el !== player) return;
+        setPlaybackRate();
+        if (Number.isFinite(el.duration)) {
+          el.currentTime = seekMs > 0 ? Math.min(seekMs / 1000, el.duration) : 0;
+        }
+        videoReady = true;
+        if (pendingSeekMs != null) {
+          el.currentTime = Math.min(pendingSeekMs / 1000, el.duration || pendingSeekMs / 1000);
+          pendingSeekMs = null;
+        }
+        updateTimeLabel();
+        hideBanner();
+      } catch (err) {
+        if (token !== loadToken || el !== player) return;
+        showBanner('Video failed to load: ' + err.message, true);
+        videoReady = false;
+      }
+    }
+
+    function showBanner(msg, isError = false) {
+      banner.textContent = msg;
+      banner.classList.toggle('error', isError);
+      banner.classList.add('show');
+    }
+    function hideBanner() { banner.classList.remove('show'); }
+    function setStatus(msg) {
+      statusEl.textContent = msg;
+      if (msg) setTimeout(() => { if (statusEl.textContent === msg) statusEl.textContent = ''; }, 3000);
+    }
+    function msToTime(ms) {
+      const totalMs = Math.max(0, Math.round(ms));
+      const totalSec = Math.floor(totalMs / 1000);
+      const m = String(Math.floor(totalSec / 60)).padStart(2, '0');
+      const s = String(totalSec % 60).padStart(2, '0');
+      const msPart = String(totalMs % 1000).padStart(3, '0');
+      return `${m}:${s}.${msPart}`;
+    }
+    function currentMs() { return Math.round(player.currentTime * 1000); }
+    function currentFrameIndex() {
+      return Math.round(currentMs() / 1000 * fps);
+    }
+    function updateTimeLabel() {
+      const pos = currentMs();
+      const frame = currentFrameIndex();
+      const framePosText = `frame ${frame} | pos ${pos}`;
+      document.getElementById('nowDisplay').textContent = framePosText;
+      document.getElementById('framePosLabel').textContent = framePosText;
+      document.getElementById('timeLabel').textContent =
+        `${msToTime(pos)} / ${msToTime((player.duration || 0) * 1000)}`;
+    }
+
+    async function api(path, opts) {
+      const res = await fetch(path, opts);
+      if (!res.ok) throw new Error(await res.text());
+      return res.json();
+    }
+
+    function setPlaybackRate() {
+      player.playbackRate = Number(document.getElementById('speed').value);
+    }
+
+    function stepFrame(delta) {
+      if (!videoReady || !Number.isFinite(player.duration)) {
+        setStatus('Video still loading…');
+        return;
+      }
+      player.pause();
+      const step = 1 / fps;
+      const dur = player.duration;
+      player.currentTime = Math.max(0, Math.min(dur, player.currentTime + delta * step));
+      updateTimeLabel();
+    }
+
+    function togglePlay() {
+      if (!currentVideo) return;
+      if (!videoReady) {
+        setStatus('Video still loading…');
+        return;
+      }
+      if (player.paused) {
+        player.play().catch(err => showBanner('Play failed — use video controls below: ' + err.message, true));
+      } else {
+        player.pause();
+      }
+    }
+
+    async function loadClasses() { classes = await api('/api/classes'); }
+
+    async function fetchAllVideos(q = '') {
+      const pageSize = 500;
+      let offset = 0;
+      let total = 0;
+      const items = [];
+      do {
+        const data = await api(
+          `/api/videos?q=${encodeURIComponent(q)}&limit=${pageSize}&offset=${offset}`
+        );
+        total = data.total;
+        items.push(...data.items);
+        offset += data.items.length;
+        if (!data.items.length) break;
+      } while (items.length < total);
+      return { total, items };
+    }
+
+    function shortVideoLabel(path) {
+      const parts = path.split('/');
+      if (parts.length >= 2) return `${parts[parts.length - 2]}/${parts[parts.length - 1]}`;
+      return path;
+    }
+
+    async function loadVideos(q = '') {
+      const data = await fetchAllVideos(q);
+      document.getElementById('videosTitle').textContent =
+        q ? `Dataset videos (${data.items.length} / ${data.total})` : `Dataset videos (${data.total})`;
+      videoList.innerHTML = '';
+      data.items.forEach(item => {
+        const btn = document.createElement('button');
+        btn.textContent = shortVideoLabel(item.path);
+        btn.title = item.path;
+        btn.dataset.path = item.path;
+        btn.dataset.half = item.half;
+        if (item.path === currentVideo) btn.classList.add('active');
+        btn.onclick = () => selectVideo(item.path, item.half);
+        videoList.appendChild(btn);
+      });
+    }
+
+    async function selectVideo(path, half) {
+      hideBanner();
+      currentVideo = path;
+      currentHalf = half;
+      selectedEvent = -1;
+      pendingSeekMs = null;
+      recreatePlayer();
+      [...videoList.querySelectorAll('button')].forEach(b => {
+        b.classList.toggle('active', b.dataset.path === path);
+      });
+
+      setStatus('Loading labels…');
+      try {
+        await loadEvents();
+        if (path !== currentVideo) return;
+        const meta = await api(`/api/meta?path=${encodeURIComponent(path)}`);
+        if (path !== currentVideo) return;
+        fps = meta.fps_assumed || 25;
+        frameMs = Math.round(1000 / fps);
+        usingProxy = !!meta.proxy_ready;
+        setStatus('Loading video…');
+        await loadVideoStream(path, 0);
+        if (path !== currentVideo) return;
+        setStatus(`Ready — ${events.length} labels · press Space or use video controls`);
+      } catch (err) {
+        showBanner(err.message, true);
+        setStatus('Load failed');
+      }
+      document.body.focus();
+    }
+
+    async function loadEvents() {
+      const data = await api(`/api/labels?video=${encodeURIComponent(currentVideo)}&half=${currentHalf}`);
+      events = data.events || [];
+      labelInfo = {
+        label_file: data.label_file,
+        label_basename: data.label_basename || 'ground_truth.json',
+        fps_assumed: data.fps_assumed || 25,
+      };
+      fps = labelInfo.fps_assumed;
+      frameMs = Math.round(1000 / fps);
+      labelsMeta.innerHTML =
+        `<strong>${events.length} labels</strong> from <strong>${labelInfo.label_basename}</strong>` +
+        ` · ${fps} fps<br>${labelInfo.label_file}`;
+      renderEvents();
+    }
+
+    function seekToMs(ms) {
+      if (!Number.isFinite(ms)) return;
+      player.pause();
+      if (videoReady && Number.isFinite(player.duration)) {
+        player.currentTime = Math.max(0, Math.min(player.duration, ms / 1000));
+        pendingSeekMs = null;
+        updateTimeLabel();
+      } else {
+        pendingSeekMs = ms;
+        setStatus('Video loading — will jump when ready…');
+      }
+    }
+
+    function renderEvents(scrollToSelected = true) {
+      eventList.innerHTML = '';
+      if (!events.length) {
+        eventList.innerHTML = '<div class="empty">No labels in ground_truth.json</div>';
+        return;
+      }
+      events.forEach((ev, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'event-row';
+        btn.textContent = ev.text;
+        btn.onclick = () => {
+          selectedEvent = idx;
+          seekToMs(Number(ev.position));
+          renderEvents();
+          document.body.focus();
+        };
+        btn.ondblclick = () => { selectedEvent = idx; openWizard('edit'); };
+        if (idx === selectedEvent) btn.classList.add('active');
+        eventList.appendChild(btn);
+      });
+      if (scrollToSelected && selectedEvent >= 0) {
+        const active = eventList.querySelector('.active');
+        if (active) active.scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    async function saveLabels(action, extra = {}) {
+      const data = await api('/api/labels', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ video: currentVideo, half: currentHalf, action, ...extra }),
+      });
+      events = data.events;
+      labelsMeta.innerHTML =
+        `<strong>${events.length} labels</strong> · saved to <strong>ground_truth.json</strong><br>${labelInfo.label_file || ''}`;
+      renderEvents();
+      setStatus('Saved');
+    }
+
+    function openWizard(mode = 'new') {
+      if (!currentVideo) return;
+      player.pause();
+      wizardMode = mode;
+      wizardStep = 0;
+      wizardData = {};
+      if (mode === 'edit' && selectedEvent >= 0) {
+        const ev = events[selectedEvent];
+        wizardData = { label: ev.label, team: ev.team, visibility: ev.visibility, position: ev.position };
+      }
+      wizard.classList.add('open');
+      renderWizardStep();
+    }
+    function closeWizard() { wizard.classList.remove('open'); wizardStep = 0; wizardData = {}; document.body.focus(); }
+    function renderWizardStep() {
+      const titles = wizardMode === 'edit' ? ['Edit class', 'Edit team', 'Edit visibility'] : ['Select class', 'Select team', 'Select visibility'];
+      const keys = ['classes', 'teams', 'visibility'];
+      const fields = ['label', 'team', 'visibility'];
+      document.getElementById('wizardTitle').textContent = titles[wizardStep];
+      const grid = document.getElementById('wizardChoices');
+      grid.innerHTML = '';
+      classes[keys[wizardStep]].forEach(value => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.textContent = value;
+        if (wizardData[fields[wizardStep]] === value) chip.classList.add('selected');
+        chip.onclick = () => {
+          wizardData[fields[wizardStep]] = value;
+          [...grid.children].forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+        };
+        grid.appendChild(chip);
+      });
+    }
+    async function wizardConfirm() {
+      const fields = ['label', 'team', 'visibility'];
+      if (!wizardData[fields[wizardStep]]) return;
+      wizardStep += 1;
+      if (wizardStep >= 3) {
+        closeWizard();
+        if (wizardMode === 'edit' && selectedEvent >= 0) {
+          await saveLabels('update', { index: selectedEvent, ...wizardData, position: wizardData.position ?? events[selectedEvent].position });
+        } else {
+          await saveLabels('add', { ...wizardData, position: currentMs() });
+        }
+        return;
+      }
+      renderWizardStep();
+    }
+
+    document.getElementById('btnPlay').onclick = () => { togglePlay(); document.body.focus(); };
+    document.getElementById('btnBack').onclick = () => stepFrame(-1);
+    document.getElementById('btnFwd').onclick = () => stepFrame(1);
+    document.getElementById('speed').onchange = setPlaybackRate;
+    document.getElementById('btnAnnotate').onclick = () => openWizard('new');
+    document.getElementById('btnEdit').onclick = () => { if (selectedEvent >= 0) openWizard('edit'); else setStatus('Select a label'); };
+    document.getElementById('btnDelete').onclick = async () => {
+      if (selectedEvent < 0) return;
+      await saveLabels('delete', { index: selectedEvent });
+      selectedEvent = -1;
+    };
+    document.getElementById('btnSave').onclick = () => saveLabels('save');
+
+    let searchTimer;
+    document.getElementById('videoSearch').oninput = (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => loadVideos(e.target.value.trim()), 200);
+    };
+
+    function onKeyDown(e) {
+      if (wizard.classList.contains('open')) {
+        if (e.key === 'Escape') { e.preventDefault(); closeWizard(); }
+        if (e.key === 'Enter') { e.preventDefault(); wizardConfirm(); }
+        return;
+      }
+      if (e.target.matches('input, textarea, select')) return;
+      if (e.code === 'Space') { e.preventDefault(); togglePlay(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); stepFrame(-1); return; }
+      if (e.key === 'ArrowRight') { e.preventDefault(); stepFrame(1); return; }
+      if (e.key === 'Enter') { e.preventDefault(); openWizard('new'); return; }
+      if (e.key === 'e' || e.key === 'E') { e.preventDefault(); if (selectedEvent >= 0) openWizard('edit'); return; }
+      if ((e.key === 'Delete' || e.key === 'Backspace') && selectedEvent >= 0) {
+        e.preventDefault(); document.getElementById('btnDelete').click(); return;
+      }
+      if (e.key === 's' && e.ctrlKey) { e.preventDefault(); saveLabels('save'); }
+    }
+    document.addEventListener('keydown', onKeyDown, true);
+
+    player = document.getElementById('player');
+    attachPlayerListeners(player);
+
+    (async function init() {
+      try {
+        await loadClasses();
+        await loadVideos();
+      } catch (err) {
+        showBanner('Failed to start: ' + err.message, true);
+      }
+      document.body.focus();
+    })();
+  </script>
+</body>
+</html>

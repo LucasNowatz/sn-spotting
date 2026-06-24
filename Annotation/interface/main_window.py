@@ -1,10 +1,11 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout
-from PyQt5.QtGui import QPalette
+from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QLabel
+from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import Qt
 from PyQt5.QtMultimedia import QMediaPlayer
 
 from interface.media_player import MediaPlayer
 from interface.list_display import ListDisplay
+from interface.video_browser import VideoBrowser
 from interface.event_selection import EventSelectionWindow
 from utils.list_management import ListManager
 from utils.event_class import Event, ms_to_time
@@ -13,11 +14,11 @@ class MainWindow(QMainWindow):
 	def __init__(self):
 		super().__init__()
 
-		# Defining the geometric properties of the window
-		self.xpos_main_window = 0 
+		# Fit inside the 1280x1024 Xvfb used by start_browser_gui.sh
+		self.xpos_main_window = 0
 		self.ypos_main_window = 0
-		self.width_main_window = 1920 
-		self.height_main_window = 1080
+		self.width_main_window = 1280
+		self.height_main_window = 960
 
 		self.frame_duration_ms = 40
 
@@ -29,9 +30,7 @@ class MainWindow(QMainWindow):
 		# Setting the window appropriately
 		self.setWindowTitle(self.title_main_window)
 		self.setGeometry(self.xpos_main_window, self.ypos_main_window, self.width_main_window, self.height_main_window)
-
-		self.palette_main_window = self.palette()
-		self.palette_main_window.setColor(QPalette.Window, Qt.black)
+		self.setAutoFillBackground(True)
 
 		# Initiate the sub-widgets
 		self.init_main_window()
@@ -44,6 +43,7 @@ class MainWindow(QMainWindow):
 		# Add the media player
 		self.media_player = MediaPlayer(self)
 		video_display = QWidget(self)
+		video_display.setAutoFillBackground(True)
 		video_display.setLayout(self.media_player.layout)
 
 		# Create the Event selection Window
@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
 
 		# Add the list
 		self.list_display = ListDisplay(self)
+		self.video_browser = VideoBrowser(self)
 
 		# Create the original list of labels
 		self.list_manager = ListManager()
@@ -59,13 +60,30 @@ class MainWindow(QMainWindow):
 
 		# Layout the different widgets
 		central_display = QWidget(self)
+		central_display.setAutoFillBackground(True)
 		self.setCentralWidget(central_display)
 
+		help_label = QLabel(
+			"Controls: Space play/pause · ←/→ frame · Enter annotate · Del delete · Ctrl+S save"
+		)
+		help_label.setStyleSheet("color: #cccccc; padding: 4px;")
+		help_label.setWordWrap(True)
+
+		right_column = QVBoxLayout()
+		right_column.addWidget(self.video_browser, stretch=2)
+		right_column.addWidget(self.list_display, stretch=1)
+		right_column.addWidget(help_label)
+		right_widget = QWidget(self)
+		right_widget.setAutoFillBackground(True)
+		right_widget.setLayout(right_column)
+
 		final_layout = QHBoxLayout()
-		final_layout.addWidget(video_display)
-		final_layout.addWidget(self.list_display)
+		final_layout.addWidget(video_display, stretch=3)
+		final_layout.addWidget(right_widget, stretch=1)
 
 		central_display.setLayout(final_layout)
+
+		self.video_browser.refresh(auto_load_first=True)
 
 	def keyPressEvent(self, event):
 

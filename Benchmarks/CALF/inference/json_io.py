@@ -4,7 +4,9 @@ import numpy as np
 from SoccerNet.Downloader import getListGames
 from config.classes import EVENT_DICTIONARY_V2, INVERSE_EVENT_DICTIONARY_V2
 
-def predictions2json(predictions_half_1, output_path, framerate=2):
+def predictions2json(predictions_half_1, output_path, framerate=2, inverse_event_dictionary=None):
+    if inverse_event_dictionary is None:
+        inverse_event_dictionary = INVERSE_EVENT_DICTIONARY_V2
 
     os.makedirs(output_path, exist_ok=True)
     output_file_path = output_path + "/Predictions-v2.json"
@@ -23,7 +25,7 @@ def predictions2json(predictions_half_1, output_path, framerate=2):
 
         prediction_data = dict()
         prediction_data["gameTime"] = str(1) + " - " + str(minutes) + ":" + str(seconds)
-        prediction_data["label"] = INVERSE_EVENT_DICTIONARY_V2[class_index]
+        prediction_data["label"] = inverse_event_dictionary[class_index]
         prediction_data["position"] = str(int((frame_index/framerate)*1000))
         prediction_data["half"] = str(1)
         prediction_data["confidence"] = str(confidence)

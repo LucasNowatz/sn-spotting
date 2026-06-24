@@ -8,6 +8,7 @@ from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import torch
 
 from dataset import SoccerNetClips, SoccerNetClipsTesting
+from custom_dataset import TurboClips, TurboClipsTesting
 from model import ContextAwareModel
 from train import trainer, test
 from loss import ContextAwareLoss, SpottingLoss
@@ -15,6 +16,30 @@ from loss import ContextAwareLoss, SpottingLoss
 # Fixing seeds for reproducibility
 torch.manual_seed(0)
 np.random.seed(0)
+
+
+def _resolve_pretrained_kwargs(args):
+    if not args.load_weights:
+        return dict(
+            weights=None,
+            load_mode="full",
+            class_map=None,
+            source_num_classes=17,
+        )
+    class_map = None
+    source_num_classes = args.pretrained_source_classes
+    if args.load_mode != "full" and args.class_set == "foul_ball_2":
+        from config import foul_ball_classes as class_cfg
+
+        class_map = class_cfg.PRETRAINED_V2_CLASS_MAP
+        source_num_classes = class_cfg.PRETRAINED_SOURCE_NUM_CLASSES
+    return dict(
+        weights=args.load_weights,
+        load_mode=args.load_mode,
+        class_map=class_map,
+        source_num_classes=source_num_classes,
+    )
+
 
 def main(args):
 
@@ -24,19 +49,50 @@ def main(args):
 
 
     # Create Train Validation and Test datasets
+    if args.custom_dataset:
+        dataset_cls = TurboClips
+        dataset_test_cls = TurboClipsTesting
+        ds_kwargs = dict(
+            path=args.SoccerNet_path,
+            splits_path=args.splits_path,
+            class_set=args.class_set,
+        )
+        train_kwargs = dict(
+            **ds_kwargs,
+            background_weight=args.background_weight,
+            event_class_weights=args.event_class_weights,
+        )
+    else:
+        dataset_cls = SoccerNetClips
+        dataset_test_cls = SoccerNetClipsTesting
+        ds_kwargs = dict(path=args.SoccerNet_path, features=args.features)
+
+    chunk_frames = args.chunk_size * args.framerate
+    rf_frames = args.receptive_field * args.framerate
+
     if not args.test_only:
-        dataset_Train = SoccerNetClips(path=args.SoccerNet_path, features=args.features, split="train", framerate=args.framerate, chunk_size=args.chunk_size*args.framerate, receptive_field=args.receptive_field*args.framerate, chunks_per_epoch=args.chunks_per_epoch)
-        dataset_Valid = SoccerNetClips(path=args.SoccerNet_path, features=args.features, split="valid", framerate=args.framerate, chunk_size=args.chunk_size*args.framerate, receptive_field=args.receptive_field*args.framerate, chunks_per_epoch=args.chunks_per_epoch)
-        dataset_Valid_metric  = SoccerNetClipsTesting(path=args.SoccerNet_path, features=args.features, split="valid", framerate=args.framerate, chunk_size=args.chunk_size*args.framerate, receptive_field=args.receptive_field*args.framerate)
+        dataset_Train = dataset_cls(**train_kwargs, split="train", framerate=args.framerate, chunk_size=chunk_frames, receptive_field=rf_frames, chunks_per_epoch=args.chunks_per_epoch)
+        dataset_Valid = dataset_cls(**train_kwargs, split="valid", framerate=args.framerate, chunk_size=chunk_frames, receptive_field=rf_frames, chunks_per_epoch=args.chunks_per_epoch)
+        dataset_Valid_metric  = dataset_test_cls(**ds_kwargs, split="valid", framerate=args.framerate, chunk_size=chunk_frames, receptive_field=rf_frames)
     
     split_to_test = "test"
     if args.challenge:
         split_to_test="challenge"
-    dataset_Test  = SoccerNetClipsTesting(path=args.SoccerNet_path, features=args.features, split=split_to_test, framerate=args.framerate, chunk_size=args.chunk_size*args.framerate, receptive_field=args.receptive_field*args.framerate)
+    dataset_Test  = dataset_test_cls(**ds_kwargs, split=split_to_test, framerate=args.framerate, chunk_size=chunk_frames, receptive_field=rf_frames)
 
 
     # Create the deep learning model
-    model = ContextAwareModel(weights=args.load_weights, input_size=args.num_features, num_classes=dataset_Test.num_classes, chunk_size=args.chunk_size*args.framerate, dim_capsule=args.dim_capsule, receptive_field=args.receptive_field*args.framerate, num_detections=dataset_Test.num_detections, framerate=args.framerate).cuda()
+    pretrained_kwargs = _resolve_pretrained_kwargs(args)
+    model = ContextAwareModel(
+        input_size=args.num_features,
+        num_classes=dataset_Test.num_classes,
+        chunk_size=args.chunk_size * args.framerate,
+        dim_capsule=args.dim_capsule,
+        receptive_field=args.receptive_field * args.framerate,
+        num_detections=dataset_Test.num_detections,
+        framerate=args.framerate,
+        **pretrained_kwargs,
+    ).cuda()
     # Logging information about the model
     logging.info(model)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -103,9 +159,41 @@ if __name__ == '__main__':
     parser = ArgumentParser(description='context aware loss function', formatter_class=ArgumentDefaultsHelpFormatter)
     
     parser.add_argument('--SoccerNet_path',   required=True, type=str, help='Path to the SoccerNet-V2 dataset folder' )
+    parser.add_argument('--custom_dataset', required=False, action='store_true', help='Use turbo clip dataset (ground_truth.json + 1_ResNET_TF2_PCA512.npy)' )
+    parser.add_argument('--splits_path', required=False, type=str, default=None, help='Path to splits.json for custom dataset' )
+    parser.add_argument('--class_set', required=False, type=str, default='turbo_8', choices=('goal_1', 'foul_1', 'foul_ball_2', 'turbo_8', 'v2_17'), help='Label vocabulary for custom dataset (goal_1, foul_1, foul_ball_2, turbo_8, or v2_17)' )
+    parser.add_argument(
+        '--background_weight',
+        required=False,
+        type=float,
+        default=1.0,
+        help='Background sampling weight vs event classes (1:1 when 1.0; 1:5 when 5.0). Custom dataset only.',
+    )
+    parser.add_argument(
+        '--event_class_weights',
+        required=False,
+        type=str,
+        default=None,
+        help='Comma-separated per-class sampling weights when an event chunk is drawn (e.g. 4,1 for Foul,Ball out of play). Custom dataset only.',
+    )
     parser.add_argument('--features',   required=False, type=str,   default="ResNET_PCA512.npy",     help='Video features' )
     parser.add_argument('--max_epochs',   required=False, type=int,   default=1000,     help='Maximum number of epochs' )
-    parser.add_argument('--load_weights',   required=False, type=str,   default=None,     help='weights to load' )
+    parser.add_argument('--load_weights',   required=False, type=str,   default=None,     help='Path to CALF checkpoint (full or partial init)' )
+    parser.add_argument(
+        '--load_mode',
+        required=False,
+        type=str,
+        default='full',
+        choices=('full', 'backbone', 'backbone_seg'),
+        help='full: strict load; backbone: conv_1+conv_2 only; backbone_seg: backbone + mapped conv_seg (foul_ball_2)',
+    )
+    parser.add_argument(
+        '--pretrained_source_classes',
+        required=False,
+        type=int,
+        default=17,
+        help='Source num_classes when using backbone_seg (SoccerNet-V2 CALF_benchmark=17)',
+    )
     parser.add_argument('--model_name',   required=False, type=str,   default="CALF",     help='named of the model to save' )
     parser.add_argument('--test_only',   required=False, action='store_true',  help='Perform testing only' )
     parser.add_argument('--challenge',   required=False, action='store_true',  help='Perform evaluations on the challenge set to produce json files' )
@@ -133,6 +221,9 @@ if __name__ == '__main__':
     parser.add_argument('--loglevel',   required=False, type=str,   default='INFO', help='logging level')
 
     args = parser.parse_args()
+
+    if args.custom_dataset and not args.splits_path:
+        parser.error("--splits_path is required when --custom_dataset is set")
 
 
     # Logging information

@@ -12,7 +12,20 @@ import torch.nn.functional as F
 
 
 class ContextAwareModel(nn.Module):
-    def __init__(self, weights=None, input_size=512, num_classes=3, chunk_size=240, dim_capsule=16, receptive_field=80, num_detections=5, framerate=2):
+    def __init__(
+        self,
+        weights=None,
+        input_size=512,
+        num_classes=3,
+        chunk_size=240,
+        dim_capsule=16,
+        receptive_field=80,
+        num_detections=5,
+        framerate=2,
+        load_mode="full",
+        class_map=None,
+        source_num_classes=17,
+    ):
         """
         INPUT: a Tensor of the form (batch_size,1,chunk_size,input_size)
         OUTPUTS:    1. The segmentation of the form (batch_size,chunk_size,num_classes)
@@ -20,8 +33,6 @@ class ContextAwareModel(nn.Module):
         """
 
         super(ContextAwareModel, self).__init__()
-
-        self.load_weights(weights=weights)
 
         self.input_size = input_size
         self.num_classes = num_classes
@@ -79,14 +90,36 @@ class ContextAwareModel(nn.Module):
         self.conv_class = nn.Conv2d(in_channels=16*(chunk_size//8-1), out_channels=self.num_detections*self.num_classes, kernel_size=(1,1))
         self.softmax = nn.Softmax(dim=-1)
 
+        if weights is not None:
+            self.load_pretrained(
+                weights,
+                mode=load_mode,
+                class_map=class_map,
+                source_num_classes=source_num_classes,
+            )
+
+    def load_pretrained(
+        self,
+        checkpoint_path,
+        mode="full",
+        class_map=None,
+        source_num_classes=17,
+    ):
+        from calf_checkpoint import load_pretrained_calf
+
+        load_pretrained_calf(
+            self,
+            checkpoint_path,
+            mode=mode,
+            class_map=class_map,
+            source_num_classes=source_num_classes,
+            dim_capsule=self.dim_capsule,
+        )
+        print(f"=> loaded checkpoint '{checkpoint_path}' (mode={mode})")
 
     def load_weights(self, weights=None):
-        if(weights is not None):
-            print("=> loading checkpoint '{}'".format(weights))
-            checkpoint = torch.load(weights)
-            self.load_state_dict(checkpoint['state_dict'])
-            print("=> loaded checkpoint '{}' (epoch {})"
-                  .format(weights, checkpoint['epoch']))
+        if weights is not None:
+            self.load_pretrained(weights, mode="full")
 
     def forward(self, inputs):
 

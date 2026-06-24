@@ -1,0 +1,19 @@
+# Large local data — do not commit
+dataset_root/
+.data/
+
+# Optional: large trained weights (often hundreds of MB)
+Benchmarks/CALF/models/**/model.pth.tar
+
+# Python / env noise
+__pycache__/
+.env
+.venv/
+
+# Training / run logs
+*.log
+
+# CALF (and other) prediction outputs
+Benchmarks/CALF/outputs/
+**/Predictions-v2.json
+**/results_spotting.json

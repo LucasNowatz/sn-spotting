@@ -8,7 +8,7 @@ class ListDisplay(QWidget):
 	def __init__(self, main_window):
 		super().__init__()
 
-		self.max_width = 300
+		self.max_width = 420
 		self.setMaximumWidth(self.max_width)
 
 		self.main_window = main_window
@@ -17,6 +17,10 @@ class ListDisplay(QWidget):
 		self.setLayout(self.layout)
 
 		self.list_widget = QListWidget()
+		self.list_widget.setStyleSheet(
+			"QListWidget { background: #1e1e1e; color: #f0f0f0; border: 1px solid #555; }"
+			"QListWidget::item:selected { background: #007acc; color: white; }"
+		)
 		self.list_widget.clicked.connect(self.clicked)
 		self.list_widget.itemDoubleClicked.connect(self.doubleClicked)
 

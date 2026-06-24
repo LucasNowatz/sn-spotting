@@ -201,38 +201,59 @@ def test(dataloader,model, model_name, save_predictions=False):
 
     model.eval()
 
+    single_half = getattr(dataloader.dataset, "single_half", False)
+    list_game = getattr(dataloader.dataset, "listGames", getListGames(dataloader.dataset.split))
+
     end = time.time()
     with tqdm(enumerate(dataloader), total=len(dataloader), ncols=120) as t:
-        for i, (feat_half1, feat_half2, label_half1, label_half2) in t:
+        for i, batch in t:
             data_time.update(time.time() - end)
+
+            if len(batch) == 5:
+                feat_half1, feat_half2, label_half1, label_half2, clip_id = batch
+            else:
+                feat_half1, feat_half2, label_half1, label_half2 = batch
+                clip_id = None
 
             feat_half1 = feat_half1.cuda().squeeze(0)
             label_half1 = label_half1.float().squeeze(0)
-            feat_half2 = feat_half2.cuda().squeeze(0)
-            label_half2 = label_half2.float().squeeze(0)
-
-
             feat_half1=feat_half1.unsqueeze(1)
-            feat_half2=feat_half2.unsqueeze(1)
 
-            # Compute the output
+            if single_half and clip_id is not None:
+                original_size = dataloader.dataset.original_sizes.get(clip_id[0], label_half1.size()[0])
+                inference_size = max(original_size, chunk_size)
+            else:
+                original_size = label_half1.size()[0]
+                inference_size = original_size
+
             output_segmentation_half_1, output_spotting_half_1 = model(feat_half1)
-            output_segmentation_half_2, output_spotting_half_2 = model(feat_half2)
+            timestamp_long_half_1 = timestamps2long(output_spotting_half_1.cpu().detach(), inference_size, chunk_size, receptive_field)
+            segmentation_long_half_1 = batch2long(output_segmentation_half_1.cpu().detach(), inference_size, chunk_size, receptive_field)
 
-
-            timestamp_long_half_1 = timestamps2long(output_spotting_half_1.cpu().detach(), label_half1.size()[0], chunk_size, receptive_field)
-            timestamp_long_half_2 = timestamps2long(output_spotting_half_2.cpu().detach(), label_half2.size()[0], chunk_size, receptive_field)
-            segmentation_long_half_1 = batch2long(output_segmentation_half_1.cpu().detach(), label_half1.size()[0], chunk_size, receptive_field)
-            segmentation_long_half_2 = batch2long(output_segmentation_half_2.cpu().detach(), label_half2.size()[0], chunk_size, receptive_field)
+            if single_half and original_size < inference_size:
+                timestamp_long_half_1 = timestamp_long_half_1[:original_size]
+                segmentation_long_half_1 = segmentation_long_half_1[:original_size]
+                label_half1 = label_half1[:original_size]
 
             spotting_grountruth.append(torch.abs(label_half1))
-            spotting_grountruth.append(torch.abs(label_half2))
             spotting_grountruth_visibility.append(label_half1)
-            spotting_grountruth_visibility.append(label_half2)
             spotting_predictions.append(timestamp_long_half_1)
-            spotting_predictions.append(timestamp_long_half_2)
             segmentation_predictions.append(segmentation_long_half_1)
-            segmentation_predictions.append(segmentation_long_half_2)
+
+            if not single_half:
+                feat_half2 = feat_half2.cuda().squeeze(0)
+                label_half2 = label_half2.float().squeeze(0)
+                feat_half2=feat_half2.unsqueeze(1)
+
+                output_segmentation_half_2, output_spotting_half_2 = model(feat_half2)
+
+                timestamp_long_half_2 = timestamps2long(output_spotting_half_2.cpu().detach(), label_half2.size()[0], chunk_size, receptive_field)
+                segmentation_long_half_2 = batch2long(output_segmentation_half_2.cpu().detach(), label_half2.size()[0], chunk_size, receptive_field)
+
+                spotting_grountruth.append(torch.abs(label_half2))
+                spotting_grountruth_visibility.append(label_half2)
+                spotting_predictions.append(timestamp_long_half_2)
+                segmentation_predictions.append(segmentation_long_half_2)
 
 
     # Transformation to numpy for evaluation
@@ -259,9 +280,18 @@ def test(dataloader,model, model_name, save_predictions=False):
 
     # Save the predictions to the json format
     if save_predictions:
-        list_game = getListGames(dataloader.dataset.split)
+        halves_per_game = 1 if single_half else 2
         for index in np.arange(len(list_game)):
-            predictions2json(detections_numpy[index*2], detections_numpy[(index*2)+1],"outputs/", list_game[index], model.framerate)
+            predictions2json(
+                detections_numpy[index * halves_per_game],
+                detections_numpy[index * halves_per_game] if single_half else detections_numpy[(index * halves_per_game) + 1],
+                "outputs/",
+                list_game[index],
+                model.framerate,
+                inverse_event_dictionary=getattr(
+                    dataloader.dataset, "inverse_event_dictionary", None
+                ),
+            )
 
 
     # Compute the performances
