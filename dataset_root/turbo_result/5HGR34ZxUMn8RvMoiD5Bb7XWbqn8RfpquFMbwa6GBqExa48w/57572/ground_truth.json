@@ -1,0 +1,177 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 78,
+      "gameTime": "1 - 00:03",
+      "label": "free_kick",
+      "position": "3120",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 137,
+      "gameTime": "1 - 00:05",
+      "label": "pass_received",
+      "position": "5480",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 149,
+      "gameTime": "1 - 00:05",
+      "label": "pass",
+      "position": "5960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 194,
+      "gameTime": "1 - 00:07",
+      "label": "pass_received",
+      "position": "7760",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 195,
+      "gameTime": "1 - 00:07",
+      "label": "pass",
+      "position": "7800",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 250,
+      "gameTime": "1 - 00:10",
+      "label": "interception",
+      "position": "10000",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 251,
+      "gameTime": "1 - 00:10",
+      "label": "pass",
+      "position": "10040",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 283,
+      "gameTime": "1 - 00:11",
+      "label": "interception",
+      "position": "11320",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 284,
+      "gameTime": "1 - 00:11",
+      "label": "pass",
+      "position": "11360",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 326,
+      "gameTime": "1 - 00:13",
+      "label": "pass_received",
+      "position": "13040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 327,
+      "gameTime": "1 - 00:13",
+      "label": "pass",
+      "position": "13080",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 470,
+      "gameTime": "1 - 00:18",
+      "label": "recovery",
+      "position": "18800",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 471,
+      "gameTime": "1 - 00:18",
+      "label": "pass",
+      "position": "18840",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 521,
+      "gameTime": "1 - 00:20",
+      "label": "interception",
+      "position": "20840",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 550,
+      "gameTime": "1 - 00:22",
+      "label": "tackle",
+      "position": "22000",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 605,
+      "gameTime": "1 - 00:24",
+      "label": "goal_kick",
+      "position": "24200",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 645,
+      "gameTime": "1 - 00:25",
+      "label": "pass_received",
+      "position": "25800",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 696,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27840",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 726,
+      "gameTime": "1 - 00:29",
+      "label": "pass_received",
+      "position": "29040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

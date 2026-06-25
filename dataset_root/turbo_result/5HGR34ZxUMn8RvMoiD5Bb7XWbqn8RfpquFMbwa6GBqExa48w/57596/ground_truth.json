@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 722,
+      "gameTime": "1 - 00:28",
+      "label": "free_kick",
+      "position": "28880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

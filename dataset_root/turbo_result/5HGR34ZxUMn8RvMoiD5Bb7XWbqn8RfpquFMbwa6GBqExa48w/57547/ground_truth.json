@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 13,
+      "gameTime": "1 - 00:00",
+      "label": "throw_in",
+      "position": "520",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 93,
+      "gameTime": "1 - 00:03",
+      "label": "pass_received",
+      "position": "3720",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 129,
+      "gameTime": "1 - 00:05",
+      "label": "pass",
+      "position": "5160",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 286,
+      "gameTime": "1 - 00:11",
+      "label": "pass_received",
+      "position": "11440",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 410,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 442,
+      "gameTime": "1 - 00:17",
+      "label": "pass_received",
+      "position": "17680",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 479,
+      "gameTime": "1 - 00:19",
+      "label": "tackle",
+      "position": "19160",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 547,
+      "gameTime": "1 - 00:21",
+      "label": "pass",
+      "position": "21880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 562,
+      "gameTime": "1 - 00:22",
+      "label": "pass_received",
+      "position": "22480",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 593,
+      "gameTime": "1 - 00:23",
+      "label": "foul",
+      "position": "23720",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

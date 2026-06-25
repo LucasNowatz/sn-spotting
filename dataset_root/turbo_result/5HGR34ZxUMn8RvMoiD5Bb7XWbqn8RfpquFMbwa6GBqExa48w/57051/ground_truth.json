@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 176,
+      "gameTime": "1 - 00:07",
+      "label": "goal_kick",
+      "position": "7040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 203,
+      "gameTime": "1 - 00:08",
+      "label": "pass_received",
+      "position": "8120",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 239,
+      "gameTime": "1 - 00:09",
+      "label": "pass",
+      "position": "9560",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 271,
+      "gameTime": "1 - 00:10",
+      "label": "pass_received",
+      "position": "10840",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 415,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 466,
+      "gameTime": "1 - 00:18",
+      "label": "pass_received",
+      "position": "18640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 555,
+      "gameTime": "1 - 00:22",
+      "label": "tackle",
+      "position": "22200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 565,
+      "gameTime": "1 - 00:22",
+      "label": "recovery",
+      "position": "22600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 692,
+      "gameTime": "1 - 00:27",
+      "label": "take_on",
+      "position": "27680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 710,
+      "gameTime": "1 - 00:28",
+      "label": "tackle",
+      "position": "28400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 736,
+      "gameTime": "1 - 00:29",
+      "label": "ball_out_of_play",
+      "position": "29440",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

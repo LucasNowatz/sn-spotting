@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 77,
+      "gameTime": "1 - 00:03",
+      "label": "pass",
+      "position": "3080",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 124,
+      "gameTime": "1 - 00:05",
+      "label": "foul",
+      "position": "4960",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

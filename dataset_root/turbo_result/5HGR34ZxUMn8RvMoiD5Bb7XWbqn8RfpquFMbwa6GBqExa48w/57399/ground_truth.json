@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 371,
+      "gameTime": "1 - 00:14",
+      "label": "shot",
+      "position": "14840",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 377,
+      "gameTime": "1 - 00:15",
+      "label": "block",
+      "position": "15080",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 420,
+      "gameTime": "1 - 00:16",
+      "label": "ball_out_of_play",
+      "position": "16800",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 735,
+      "gameTime": "1 - 00:29",
+      "label": "throw_in",
+      "position": "29400",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    }
+  ]
+}

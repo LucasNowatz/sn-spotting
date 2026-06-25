@@ -1,0 +1,114 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 456,
+      "gameTime": "1 - 00:18",
+      "label": "free_kick",
+      "position": "18240",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 536,
+      "gameTime": "1 - 00:21",
+      "label": "aerial_duel",
+      "position": "21440",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 537,
+      "gameTime": "1 - 00:21",
+      "label": "aerial_duel",
+      "position": "21480",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 538,
+      "gameTime": "1 - 00:21",
+      "label": "pass",
+      "position": "21520",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 581,
+      "gameTime": "1 - 00:23",
+      "label": "aerial_duel",
+      "position": "23240",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 582,
+      "gameTime": "1 - 00:23",
+      "label": "aerial_duel",
+      "position": "23280",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 617,
+      "gameTime": "1 - 00:24",
+      "label": "recovery",
+      "position": "24680",
+      "team": "right",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 647,
+      "gameTime": "1 - 00:25",
+      "label": "tackle",
+      "position": "25880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 694,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27760",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 713,
+      "gameTime": "1 - 00:28",
+      "label": "pass_received",
+      "position": "28520",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 715,
+      "gameTime": "1 - 00:28",
+      "label": "tackle",
+      "position": "28600",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 749,
+      "gameTime": "1 - 00:29",
+      "label": "ball_out_of_play",
+      "position": "29960",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

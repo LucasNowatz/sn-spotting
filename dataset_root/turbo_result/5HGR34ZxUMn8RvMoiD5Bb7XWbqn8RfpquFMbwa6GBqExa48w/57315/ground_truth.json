@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 385,
+      "gameTime": "1 - 00:15",
+      "label": "goal_kick",
+      "position": "15400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 430,
+      "gameTime": "1 - 00:17",
+      "label": "interception",
+      "position": "17200",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 451,
+      "gameTime": "1 - 00:18",
+      "label": "recovery",
+      "position": "18040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 452,
+      "gameTime": "1 - 00:18",
+      "label": "pass",
+      "position": "18080",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 529,
+      "gameTime": "1 - 00:21",
+      "label": "aerial_duel",
+      "position": "21160",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 530,
+      "gameTime": "1 - 00:21",
+      "label": "aerial_duel",
+      "position": "21200",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 562,
+      "gameTime": "1 - 00:22",
+      "label": "recovery",
+      "position": "22480",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 563,
+      "gameTime": "1 - 00:22",
+      "label": "pass",
+      "position": "22520",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 645,
+      "gameTime": "1 - 00:25",
+      "label": "aerial_duel",
+      "position": "25800",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 646,
+      "gameTime": "1 - 00:25",
+      "label": "aerial_duel",
+      "position": "25840",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 683,
+      "gameTime": "1 - 00:27",
+      "label": "recovery",
+      "position": "27320",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

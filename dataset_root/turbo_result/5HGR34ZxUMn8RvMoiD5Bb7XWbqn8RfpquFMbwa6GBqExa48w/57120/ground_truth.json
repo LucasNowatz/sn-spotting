@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 262,
+      "gameTime": "1 - 00:10",
+      "label": "free_kick",
+      "position": "10480",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 301,
+      "gameTime": "1 - 00:12",
+      "label": "aerial_duel",
+      "position": "12040",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 303,
+      "gameTime": "1 - 00:12",
+      "label": "pass",
+      "position": "12120",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 329,
+      "gameTime": "1 - 00:13",
+      "label": "pass_received",
+      "position": "13160",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 455,
+      "gameTime": "1 - 00:18",
+      "label": "confuse_take_on",
+      "position": "18200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 466,
+      "gameTime": "1 - 00:18",
+      "label": "ball_out_of_play",
+      "position": "18000",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

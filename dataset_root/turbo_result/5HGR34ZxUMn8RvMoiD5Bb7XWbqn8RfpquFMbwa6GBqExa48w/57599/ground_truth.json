@@ -1,0 +1,177 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 115,
+      "gameTime": "1 - 00:04",
+      "label": "recovery",
+      "position": "4600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 144,
+      "gameTime": "1 - 00:05",
+      "label": "pass",
+      "position": "5760",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 190,
+      "gameTime": "1 - 00:07",
+      "label": "pass_received",
+      "position": "7600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 192,
+      "gameTime": "1 - 00:07",
+      "label": "pass",
+      "position": "7680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 284,
+      "gameTime": "1 - 00:11",
+      "label": "pass_received",
+      "position": "11360",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 286,
+      "gameTime": "1 - 00:11",
+      "label": "pass",
+      "position": "11440",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 397,
+      "gameTime": "1 - 00:15",
+      "label": "recovery",
+      "position": "15880",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 398,
+      "gameTime": "1 - 00:15",
+      "label": "pass",
+      "position": "15920",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 456,
+      "gameTime": "1 - 00:18",
+      "label": "pass_received",
+      "position": "18240",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 482,
+      "gameTime": "1 - 00:19",
+      "label": "pass",
+      "position": "19280",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 549,
+      "gameTime": "1 - 00:21",
+      "label": "interception",
+      "position": "21960",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 550,
+      "gameTime": "1 - 00:22",
+      "label": "pass",
+      "position": "22000",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 592,
+      "gameTime": "1 - 00:23",
+      "label": "interception",
+      "position": "23680",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 619,
+      "gameTime": "1 - 00:24",
+      "label": "pass",
+      "position": "24760",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 637,
+      "gameTime": "1 - 00:25",
+      "label": "pass_received",
+      "position": "25480",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 666,
+      "gameTime": "1 - 00:26",
+      "label": "tackle",
+      "position": "26640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 693,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 724,
+      "gameTime": "1 - 00:28",
+      "label": "pass_received",
+      "position": "28960",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 725,
+      "gameTime": "1 - 00:29",
+      "label": "pass",
+      "position": "29000",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "train": [
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/002",
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/003",
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/004",
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/005",
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/006",
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/007"
+  ],
+  "valid": [
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/001"
+  ],
+  "test": [
+    "5HGR34ZxUMn8RvMoiD5Bb7XWbqn8RfpquFMbwa6GBqExa48w/008"
+  ]
+}

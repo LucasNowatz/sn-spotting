@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 55,
+      "gameTime": "1 - 00:02",
+      "label": "free_kick",
+      "position": "2200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 149,
+      "gameTime": "1 - 00:05",
+      "label": "shot",
+      "position": "5960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 367,
+      "gameTime": "1 - 00:14",
+      "label": "free_kick",
+      "position": "14680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 403,
+      "gameTime": "1 - 00:16",
+      "label": "pass_received",
+      "position": "16120",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 470,
+      "gameTime": "1 - 00:18",
+      "label": "pass",
+      "position": "18800",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 493,
+      "gameTime": "1 - 00:19",
+      "label": "pass_received",
+      "position": "19720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 576,
+      "gameTime": "1 - 00:23",
+      "label": "take_on",
+      "position": "23040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 700,
+      "gameTime": "1 - 00:28",
+      "label": "take_on",
+      "position": "28000",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 745,
+      "gameTime": "1 - 00:29",
+      "label": "recovery",
+      "position": "29800",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 749,
+      "gameTime": "1 - 00:29",
+      "label": "tackle",
+      "position": "29960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

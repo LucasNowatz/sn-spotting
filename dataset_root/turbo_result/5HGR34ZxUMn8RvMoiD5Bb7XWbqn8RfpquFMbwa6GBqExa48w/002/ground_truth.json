@@ -1,0 +1,1050 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 581,
+      "gameTime": "1 - 00:23",
+      "label": "Ball out of play",
+      "position": "23240",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 671,
+      "gameTime": "1 - 00:26",
+      "label": "Throw-in",
+      "position": "26840",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 1194,
+      "gameTime": "1 - 00:47",
+      "label": "Ball out of play",
+      "position": "47760",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 1394,
+      "gameTime": "1 - 00:55",
+      "label": "Throw-in",
+      "position": "55760",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 1885,
+      "gameTime": "1 - 01:15",
+      "label": "Ball out of play",
+      "position": "75400",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 2578,
+      "gameTime": "1 - 01:43",
+      "label": "Corner",
+      "position": "103120",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 2625,
+      "gameTime": "1 - 01:45",
+      "label": "Shots on target",
+      "position": "105000",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 2628,
+      "gameTime": "1 - 01:45",
+      "label": "Goal",
+      "position": "105127",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 3326,
+      "gameTime": "1 - 02:13",
+      "label": "Direct free-kick",
+      "position": "133040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 3327,
+      "gameTime": "1 - 02:13",
+      "label": "Direct free-kick",
+      "position": "133080",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 4330,
+      "gameTime": "1 - 02:53",
+      "label": "Shots on target",
+      "position": "173200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 4360,
+      "gameTime": "1 - 02:54",
+      "label": "Goal",
+      "position": "174400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 5354,
+      "gameTime": "1 - 03:34",
+      "label": "Direct free-kick",
+      "position": "214160",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 5997,
+      "gameTime": "1 - 03:59",
+      "label": "Ball out of play",
+      "position": "239880",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 6181,
+      "gameTime": "1 - 04:07",
+      "label": "Throw-in",
+      "position": "247240",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 6272,
+      "gameTime": "1 - 04:10",
+      "label": "Ball out of play",
+      "position": "250880",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 6464,
+      "gameTime": "1 - 04:18",
+      "label": "Throw-in",
+      "position": "258560",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 7871,
+      "gameTime": "1 - 05:14",
+      "label": "Ball out of play",
+      "position": "314840",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 8156,
+      "gameTime": "1 - 05:26",
+      "label": "Throw-in",
+      "position": "326240",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 8490,
+      "gameTime": "1 - 05:39",
+      "label": "Shots on target",
+      "position": "339600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 8554,
+      "gameTime": "1 - 05:42",
+      "label": "Ball out of play",
+      "position": "342160",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 9176,
+      "gameTime": "1 - 06:07",
+      "label": "Corner",
+      "position": "367040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 9255,
+      "gameTime": "1 - 06:10",
+      "label": "Shots on target",
+      "position": "370200",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 10095,
+      "gameTime": "1 - 06:43",
+      "label": "Direct free-kick",
+      "position": "403800",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 10761,
+      "gameTime": "1 - 07:10",
+      "label": "Shots on target",
+      "position": "430440",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 10815,
+      "gameTime": "1 - 07:12",
+      "label": "Ball out of play",
+      "position": "432600",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 11469,
+      "gameTime": "1 - 07:38",
+      "label": "Foul",
+      "position": "458760",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 12518,
+      "gameTime": "1 - 08:20",
+      "label": "Shots on target",
+      "position": "500720",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 13136,
+      "gameTime": "1 - 08:45",
+      "label": "Ball out of play",
+      "position": "525440",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 13710,
+      "gameTime": "1 - 09:08",
+      "label": "Foul",
+      "position": "548400",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 14720,
+      "gameTime": "1 - 09:48",
+      "label": "Direct free-kick",
+      "position": "588800",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 15008,
+      "gameTime": "1 - 10:00",
+      "label": "Foul",
+      "position": "600320",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 16147,
+      "gameTime": "1 - 10:45",
+      "label": "Direct free-kick",
+      "position": "645880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 16462,
+      "gameTime": "1 - 10:58",
+      "label": "Ball out of play",
+      "position": "658480",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 17811,
+      "gameTime": "1 - 11:52",
+      "label": "Throw-in",
+      "position": "712440",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 18328,
+      "gameTime": "1 - 12:13",
+      "label": "Ball out of play",
+      "position": "733120",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 18548,
+      "gameTime": "1 - 12:21",
+      "label": "Throw-in",
+      "position": "741920",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 19364,
+      "gameTime": "1 - 12:54",
+      "label": "Foul",
+      "position": "774560",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 20445,
+      "gameTime": "1 - 13:37",
+      "label": "Direct free-kick",
+      "position": "817800",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 20553,
+      "gameTime": "1 - 13:42",
+      "label": "Shots on target",
+      "position": "822120",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 20597,
+      "gameTime": "1 - 13:43",
+      "label": "Ball out of play",
+      "position": "823880",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 20982,
+      "gameTime": "1 - 13:59",
+      "label": "Ball out of play",
+      "position": "839280",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 21314,
+      "gameTime": "1 - 14:12",
+      "label": "Throw-in",
+      "position": "852560",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 21909,
+      "gameTime": "1 - 14:36",
+      "label": "Ball out of play",
+      "position": "876360",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 23452,
+      "gameTime": "1 - 15:38",
+      "label": "Ball out of play",
+      "position": "938080",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 23761,
+      "gameTime": "1 - 15:50",
+      "label": "Throw-in",
+      "position": "950440",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 23844,
+      "gameTime": "1 - 15:53",
+      "label": "Ball out of play",
+      "position": "953760",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 24114,
+      "gameTime": "1 - 16:04",
+      "label": "Throw-in",
+      "position": "964560",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 24177,
+      "gameTime": "1 - 16:07",
+      "label": "Ball out of play",
+      "position": "967080",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 25008,
+      "gameTime": "1 - 16:40",
+      "label": "Throw-in",
+      "position": "1000320",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 25557,
+      "gameTime": "1 - 17:02",
+      "label": "Foul",
+      "position": "1022280",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 26670,
+      "gameTime": "1 - 17:46",
+      "label": "Direct free-kick",
+      "position": "1066800",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 26963,
+      "gameTime": "1 - 17:58",
+      "label": "Ball out of play",
+      "position": "1078520",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 27071,
+      "gameTime": "1 - 18:02",
+      "label": "Throw-in",
+      "position": "1082840",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 27640,
+      "gameTime": "1 - 18:25",
+      "label": "Ball out of play",
+      "position": "1105600",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 27933,
+      "gameTime": "1 - 18:37",
+      "label": "Throw-in",
+      "position": "1117320",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 28429,
+      "gameTime": "1 - 18:57",
+      "label": "Shots on target",
+      "position": "1137160",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 28681,
+      "gameTime": "1 - 19:07",
+      "label": "Ball out of play",
+      "position": "1147240",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 29087,
+      "gameTime": "1 - 19:23",
+      "label": "Throw-in",
+      "position": "1163480",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 29164,
+      "gameTime": "1 - 19:26",
+      "label": "Ball out of play",
+      "position": "1166560",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 29303,
+      "gameTime": "1 - 19:32",
+      "label": "Throw-in",
+      "position": "1172120",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 30950,
+      "gameTime": "1 - 20:38",
+      "label": "Ball out of play",
+      "position": "1238000",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 31039,
+      "gameTime": "1 - 20:41",
+      "label": "Throw-in",
+      "position": "1241560",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 33538,
+      "gameTime": "1 - 22:21",
+      "label": "Ball out of play",
+      "position": "1341520",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 33993,
+      "gameTime": "1 - 22:39",
+      "label": "Throw-in",
+      "position": "1359720",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 34244,
+      "gameTime": "1 - 22:49",
+      "label": "Ball out of play",
+      "position": "1369760",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 34901,
+      "gameTime": "1 - 23:16",
+      "label": "Corner",
+      "position": "1396040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 35111,
+      "gameTime": "1 - 23:24",
+      "label": "Ball out of play",
+      "position": "1404440",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 35198,
+      "gameTime": "1 - 23:27",
+      "label": "Throw-in",
+      "position": "1407920",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 35338,
+      "gameTime": "1 - 23:33",
+      "label": "Ball out of play",
+      "position": "1413520",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 35973,
+      "gameTime": "1 - 23:58",
+      "label": "Ball out of play",
+      "position": "1438920",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 36366,
+      "gameTime": "1 - 24:14",
+      "label": "Throw-in",
+      "position": "1454640",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 36924,
+      "gameTime": "1 - 24:36",
+      "label": "Ball out of play",
+      "position": "1476960",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 36979,
+      "gameTime": "1 - 24:39",
+      "label": "Throw-in",
+      "position": "1479160",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 37358,
+      "gameTime": "1 - 24:54",
+      "label": "Foul",
+      "position": "1494320",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 37599,
+      "gameTime": "1 - 25:03",
+      "label": "Direct free-kick",
+      "position": "1503960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 37838,
+      "gameTime": "1 - 25:13",
+      "label": "Shots on target",
+      "position": "1513520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 39365,
+      "gameTime": "1 - 26:14",
+      "label": "Ball out of play",
+      "position": "1574600",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 39783,
+      "gameTime": "1 - 26:31",
+      "label": "Throw-in",
+      "position": "1591320",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 42010,
+      "gameTime": "1 - 28:00",
+      "label": "Throw-in",
+      "position": "1680400",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 42321,
+      "gameTime": "1 - 28:12",
+      "label": "Ball out of play",
+      "position": "1692840",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 42635,
+      "gameTime": "1 - 28:25",
+      "label": "Throw-in",
+      "position": "1705400",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 43982,
+      "gameTime": "1 - 29:19",
+      "label": "Direct free-kick",
+      "position": "1759280",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 44843,
+      "gameTime": "1 - 29:53",
+      "label": "Ball out of play",
+      "position": "1793720",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 45036,
+      "gameTime": "1 - 30:01",
+      "label": "Throw-in",
+      "position": "1801440",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 45255,
+      "gameTime": "1 - 30:10",
+      "label": "Foul",
+      "position": "1810200",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 46021,
+      "gameTime": "1 - 30:40",
+      "label": "Direct free-kick",
+      "position": "1840840",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 46075,
+      "gameTime": "1 - 30:43",
+      "label": "Shots on target",
+      "position": "1843000",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 46129,
+      "gameTime": "1 - 30:45",
+      "label": "Ball out of play",
+      "position": "1845160",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 47578,
+      "gameTime": "1 - 31:43",
+      "label": "Foul",
+      "position": "1903120",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 48259,
+      "gameTime": "1 - 32:10",
+      "label": "Direct free-kick",
+      "position": "1930360",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 48348,
+      "gameTime": "1 - 32:13",
+      "label": "Shots on target",
+      "position": "1933920",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 49402,
+      "gameTime": "1 - 32:56",
+      "label": "Foul",
+      "position": "1976080",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 51223,
+      "gameTime": "1 - 34:08",
+      "label": "Direct free-kick",
+      "position": "2048920",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 51695,
+      "gameTime": "1 - 34:27",
+      "label": "Ball out of play",
+      "position": "2067800",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 52432,
+      "gameTime": "1 - 34:57",
+      "label": "Ball out of play",
+      "position": "2097280",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 52541,
+      "gameTime": "1 - 35:01",
+      "label": "Throw-in",
+      "position": "2101640",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 52932,
+      "gameTime": "1 - 35:17",
+      "label": "Ball out of play",
+      "position": "2117280",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 53178,
+      "gameTime": "1 - 35:27",
+      "label": "Throw-in",
+      "position": "2127120",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 53488,
+      "gameTime": "1 - 35:39",
+      "label": "Ball out of play",
+      "position": "2139520",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 53650,
+      "gameTime": "1 - 35:46",
+      "label": "Throw-in",
+      "position": "2146000",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 54958,
+      "gameTime": "1 - 36:38",
+      "label": "Direct free-kick",
+      "position": "2198320",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 56723,
+      "gameTime": "1 - 37:48",
+      "label": "Ball out of play",
+      "position": "2268920",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57070,
+      "gameTime": "1 - 38:02",
+      "label": "Throw-in",
+      "position": "2282800",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57209,
+      "gameTime": "1 - 38:08",
+      "label": "risk action foul",
+      "position": "2288360",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57678,
+      "gameTime": "1 - 38:27",
+      "label": "Direct free-kick",
+      "position": "2307120",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57754,
+      "gameTime": "1 - 38:30",
+      "label": "Ball out of play",
+      "position": "2310160",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57971,
+      "gameTime": "1 - 38:38",
+      "label": "Throw-in",
+      "position": "2318840",
+      "team": "right",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 58157,
+      "gameTime": "1 - 38:46",
+      "label": "Shots on target",
+      "position": "2326280",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 59305,
+      "gameTime": "1 - 39:32",
+      "label": "Foul",
+      "position": "2372200",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 60634,
+      "gameTime": "1 - 40:25",
+      "label": "Direct free-kick",
+      "position": "2425360",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 60821,
+      "gameTime": "1 - 40:32",
+      "label": "Foul",
+      "position": "2432840",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 61688,
+      "gameTime": "1 - 41:07",
+      "label": "Direct free-kick",
+      "position": "2467520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 61787,
+      "gameTime": "1 - 41:11",
+      "label": "Shots on target",
+      "position": "2471480",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 62850,
+      "gameTime": "1 - 41:54",
+      "label": "Shots on target",
+      "position": "2514000",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 62880,
+      "gameTime": "1 - 41:55",
+      "label": "Goal",
+      "position": "2515200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

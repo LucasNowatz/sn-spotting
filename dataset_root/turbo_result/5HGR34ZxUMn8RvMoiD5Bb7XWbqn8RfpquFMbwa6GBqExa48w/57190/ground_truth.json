@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 592,
+      "gameTime": "1 - 00:23",
+      "label": "corner",
+      "position": "23680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

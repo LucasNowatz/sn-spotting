@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 255,
+      "gameTime": "1 - 00:10",
+      "label": "pass",
+      "position": "10200",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 333,
+      "gameTime": "1 - 00:13",
+      "label": "aerial_duel",
+      "position": "13320",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 334,
+      "gameTime": "1 - 00:13",
+      "label": "aerial_duel",
+      "position": "13360",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 335,
+      "gameTime": "1 - 00:13",
+      "label": "pass",
+      "position": "13400",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 377,
+      "gameTime": "1 - 00:15",
+      "label": "interception",
+      "position": "15080",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 378,
+      "gameTime": "1 - 00:15",
+      "label": "pass",
+      "position": "15120",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 415,
+      "gameTime": "1 - 00:16",
+      "label": "interception",
+      "position": "16600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 416,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 510,
+      "gameTime": "1 - 00:20",
+      "label": "pass_received",
+      "position": "20400",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 511,
+      "gameTime": "1 - 00:20",
+      "label": "pass",
+      "position": "20440",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 573,
+      "gameTime": "1 - 00:22",
+      "label": "pass_received",
+      "position": "22920",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 574,
+      "gameTime": "1 - 00:22",
+      "label": "pass",
+      "position": "22960",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 636,
+      "gameTime": "1 - 00:25",
+      "label": "aerial_duel",
+      "position": "25440",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 680,
+      "gameTime": "1 - 00:27",
+      "label": "pass_received",
+      "position": "27200",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

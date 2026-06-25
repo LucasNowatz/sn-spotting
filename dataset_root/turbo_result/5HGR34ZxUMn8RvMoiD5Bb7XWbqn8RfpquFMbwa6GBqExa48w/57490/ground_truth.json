@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 50,
+      "gameTime": "1 - 00:02",
+      "label": "shot",
+      "position": "2000",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 68,
+      "gameTime": "1 - 00:02",
+      "label": "goal",
+      "position": "2720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 173,
+      "gameTime": "1 - 00:06",
+      "label": "pass",
+      "position": "6920",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 634,
+      "gameTime": "1 - 00:25",
+      "label": "recovery",
+      "position": "25360",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 641,
+      "gameTime": "1 - 00:25",
+      "label": "pass",
+      "position": "25640",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

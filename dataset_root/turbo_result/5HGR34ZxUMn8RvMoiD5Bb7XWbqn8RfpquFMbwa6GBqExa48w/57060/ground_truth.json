@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 415,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16600",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 464,
+      "gameTime": "1 - 00:18",
+      "label": "aerial_duel",
+      "position": "18560",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 465,
+      "gameTime": "1 - 00:18",
+      "label": "aerial_duel",
+      "position": "18600",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 493,
+      "gameTime": "1 - 00:19",
+      "label": "recovery",
+      "position": "19720",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 570,
+      "gameTime": "1 - 00:22",
+      "label": "pass",
+      "position": "22800",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

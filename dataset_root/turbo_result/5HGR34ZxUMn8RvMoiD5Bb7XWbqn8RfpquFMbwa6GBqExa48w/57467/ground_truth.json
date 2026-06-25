@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 24,
+      "gameTime": "1 - 00:00",
+      "label": "pass",
+      "position": "960",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 73,
+      "gameTime": "1 - 00:02",
+      "label": "pass_received",
+      "position": "2920",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 117,
+      "gameTime": "1 - 00:04",
+      "label": "pass",
+      "position": "4680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

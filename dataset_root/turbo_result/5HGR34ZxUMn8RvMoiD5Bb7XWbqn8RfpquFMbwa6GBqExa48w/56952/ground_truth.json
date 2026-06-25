@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 21,
+      "gameTime": "1 - 00:00",
+      "label": "aerial_duel",
+      "position": "840",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 57,
+      "gameTime": "1 - 00:02",
+      "label": "pass",
+      "position": "2280",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 75,
+      "gameTime": "1 - 00:03",
+      "label": "pass_received",
+      "position": "3000",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 110,
+      "gameTime": "1 - 00:04",
+      "label": "tackle",
+      "position": "4400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 120,
+      "gameTime": "1 - 00:08",
+      "label": "foul",
+      "position": "4800",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 354,
+      "gameTime": "1 - 00:14",
+      "label": "free_kick",
+      "position": "14160",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 385,
+      "gameTime": "1 - 00:15",
+      "label": "pass_received",
+      "position": "15400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 413,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 485,
+      "gameTime": "1 - 00:19",
+      "label": "pass_received",
+      "position": "19400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 694,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27760",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 735,
+      "gameTime": "1 - 00:29",
+      "label": "pass_received",
+      "position": "29400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

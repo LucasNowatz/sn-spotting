@@ -17,6 +17,7 @@ python "${REPO}/dataset_root/create_splits.py" \
   --class_set foul_ball_2 \
   --require-features \
   --no-require-annotations \
+  --eval-30s-valid-test \
   --output "${SPLITS}"
 
 conda activate CALF-pytorch

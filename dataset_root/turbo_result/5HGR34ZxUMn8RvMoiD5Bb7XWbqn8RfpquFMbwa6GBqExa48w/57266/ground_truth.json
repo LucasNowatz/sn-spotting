@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 383,
+      "gameTime": "1 - 00:15",
+      "label": "corner",
+      "position": "15320",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 437,
+      "gameTime": "1 - 00:17",
+      "label": "aerial_duel",
+      "position": "17480",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 438,
+      "gameTime": "1 - 00:17",
+      "label": "aerial_duel",
+      "position": "17520",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 439,
+      "gameTime": "1 - 00:17",
+      "label": "clearance",
+      "position": "17560",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 481,
+      "gameTime": "1 - 00:19",
+      "label": "recovery",
+      "position": "19240",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 511,
+      "gameTime": "1 - 00:20",
+      "label": "shot",
+      "position": "20440",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 514,
+      "gameTime": "1 - 00:20",
+      "label": "block",
+      "position": "20560",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 579,
+      "gameTime": "1 - 00:23",
+      "label": "recovery",
+      "position": "23160",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 683,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27320",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 708,
+      "gameTime": "1 - 00:28",
+      "label": "interception",
+      "position": "28320",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

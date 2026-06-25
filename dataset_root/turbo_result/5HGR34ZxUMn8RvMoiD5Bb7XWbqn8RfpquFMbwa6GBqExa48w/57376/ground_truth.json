@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 42,
+      "gameTime": "1 - 00:01",
+      "label": "pass",
+      "position": "1680",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 78,
+      "gameTime": "1 - 00:03",
+      "label": "interception",
+      "position": "3120",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 79,
+      "gameTime": "1 - 00:03",
+      "label": "tackle",
+      "position": "3160",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 635,
+      "gameTime": "1 - 00:25",
+      "label": "free_kick",
+      "position": "25400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 738,
+      "gameTime": "1 - 00:29",
+      "label": "interception",
+      "position": "29520",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    }
+  ]
+}

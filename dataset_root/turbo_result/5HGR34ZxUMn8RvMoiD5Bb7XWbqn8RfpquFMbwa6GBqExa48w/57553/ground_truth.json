@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 60,
+      "gameTime": "1 - 00:02",
+      "label": "tackle",
+      "position": "2400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 87,
+      "gameTime": "1 - 00:03",
+      "label": "tackle",
+      "position": "3480",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 116,
+      "gameTime": "1 - 00:04",
+      "label": "take_on",
+      "position": "4640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 190,
+      "gameTime": "1 - 00:07",
+      "label": "foul",
+      "position": "7600",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 17,
+      "gameTime": "1 - 00:00",
+      "label": "pass",
+      "position": "680",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 65,
+      "gameTime": "1 - 00:02",
+      "label": "pass_received",
+      "position": "2600",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 99,
+      "gameTime": "1 - 00:03",
+      "label": "pass",
+      "position": "3960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 132,
+      "gameTime": "1 - 00:05",
+      "label": "save",
+      "position": "5280",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 236,
+      "gameTime": "1 - 00:09",
+      "label": "goal_kick",
+      "position": "9440",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 360,
+      "gameTime": "1 - 00:14",
+      "label": "aerial_duel",
+      "position": "14400",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 385,
+      "gameTime": "1 - 00:15",
+      "label": "recovery",
+      "position": "15400",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 479,
+      "gameTime": "1 - 00:19",
+      "label": "shot",
+      "position": "19160",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 551,
+      "gameTime": "1 - 00:22",
+      "label": "goal",
+      "position": "22040",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

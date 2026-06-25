@@ -1,0 +1,114 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 71,
+      "gameTime": "1 - 00:02",
+      "label": "corner",
+      "position": "2840",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 119,
+      "gameTime": "1 - 00:04",
+      "label": "aerial_duel",
+      "position": "4760",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 162,
+      "gameTime": "1 - 00:06",
+      "label": "clearance",
+      "position": "6480",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 230,
+      "gameTime": "1 - 00:09",
+      "label": "recovery",
+      "position": "9200",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 231,
+      "gameTime": "1 - 00:09",
+      "label": "pass",
+      "position": "9240",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 260,
+      "gameTime": "1 - 00:10",
+      "label": "pass_received",
+      "position": "10400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 306,
+      "gameTime": "1 - 00:12",
+      "label": "shot",
+      "position": "12240",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 313,
+      "gameTime": "1 - 00:12",
+      "label": "block",
+      "position": "12520",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 377,
+      "gameTime": "1 - 00:15",
+      "label": "recovery",
+      "position": "15080",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 414,
+      "gameTime": "1 - 00:16",
+      "label": "shot",
+      "position": "16560",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 476,
+      "gameTime": "1 - 00:19",
+      "label": "ball_out_of_play",
+      "position": "19040",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 667,
+      "gameTime": "1 - 00:26",
+      "label": "pass",
+      "position": "26680",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

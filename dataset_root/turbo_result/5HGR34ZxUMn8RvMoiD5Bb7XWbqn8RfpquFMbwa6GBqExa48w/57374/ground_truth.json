@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 26,
+      "gameTime": "1 - 00:01",
+      "label": "take_on",
+      "position": "1040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 65,
+      "gameTime": "1 - 00:02",
+      "label": "tackle",
+      "position": "2600",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 89,
+      "gameTime": "1 - 00:03",
+      "label": "tackle",
+      "position": "3560",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 143,
+      "gameTime": "1 - 00:05",
+      "label": "pass",
+      "position": "5720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 177,
+      "gameTime": "1 - 00:07",
+      "label": "pass_received",
+      "position": "7080",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 236,
+      "gameTime": "1 - 00:09",
+      "label": "tackle",
+      "position": "9440",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 254,
+      "gameTime": "1 - 00:10",
+      "label": "ball_out_of_play",
+      "position": "10160",
+      "team": "right",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 748,
+      "gameTime": "1 - 00:29",
+      "label": "throw_in",
+      "position": "29920",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    }
+  ]
+}

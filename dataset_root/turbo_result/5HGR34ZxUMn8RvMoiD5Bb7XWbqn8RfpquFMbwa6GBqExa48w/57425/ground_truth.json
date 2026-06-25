@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 543,
+      "gameTime": "1 - 00:21",
+      "label": "corner",
+      "position": "21720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 587,
+      "gameTime": "1 - 00:23",
+      "label": "clearance",
+      "position": "23480",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 631,
+      "gameTime": "1 - 00:25",
+      "label": "clearance",
+      "position": "25240",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 714,
+      "gameTime": "1 - 00:28",
+      "label": "recovery",
+      "position": "28560",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 740,
+      "gameTime": "1 - 00:29",
+      "label": "tackle",
+      "position": "29600",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

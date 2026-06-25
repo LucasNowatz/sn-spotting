@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 655,
+      "gameTime": "1 - 00:26",
+      "label": "throw_in",
+      "position": "26200",
+      "team": "left",
+      "body_part": "hand",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 696,
+      "gameTime": "1 - 00:27",
+      "label": "interception",
+      "position": "27840",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 697,
+      "gameTime": "1 - 00:27",
+      "label": "pass",
+      "position": "27880",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 721,
+      "gameTime": "1 - 00:28",
+      "label": "recovery",
+      "position": "28840",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 722,
+      "gameTime": "1 - 00:28",
+      "label": "pass",
+      "position": "28880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

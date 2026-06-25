@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 13,
+      "gameTime": "1 - 00:00",
+      "label": "confuse_pass_received",
+      "position": "520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 59,
+      "gameTime": "1 - 00:02",
+      "label": "pass",
+      "position": "2360",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 86,
+      "gameTime": "1 - 00:03",
+      "label": "pass_received",
+      "position": "3440",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 224,
+      "gameTime": "1 - 00:08",
+      "label": "pass",
+      "position": "8960",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 263,
+      "gameTime": "1 - 00:10",
+      "label": "pass_received",
+      "position": "10520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 300,
+      "gameTime": "1 - 00:12",
+      "label": "pass",
+      "position": "12000",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 326,
+      "gameTime": "1 - 00:13",
+      "label": "recovery",
+      "position": "13040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 327,
+      "gameTime": "1 - 00:13",
+      "label": "pass",
+      "position": "13080",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 366,
+      "gameTime": "1 - 00:14",
+      "label": "pass_received",
+      "position": "14640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 450,
+      "gameTime": "1 - 00:18",
+      "label": "foul",
+      "position": "18000",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

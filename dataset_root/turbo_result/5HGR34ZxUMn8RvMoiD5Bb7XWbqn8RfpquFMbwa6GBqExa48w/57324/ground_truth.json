@@ -1,0 +1,177 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 0,
+      "gameTime": "1 - 00:00",
+      "label": "aerial_duel",
+      "position": "0",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 1,
+      "gameTime": "1 - 00:00",
+      "label": "aerial_duel",
+      "position": "40",
+      "team": "right",
+      "body_part": "body",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 51,
+      "gameTime": "1 - 00:02",
+      "label": "pass",
+      "position": "2040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 93,
+      "gameTime": "1 - 00:03",
+      "label": "interception",
+      "position": "3720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 94,
+      "gameTime": "1 - 00:03",
+      "label": "pass",
+      "position": "3760",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 131,
+      "gameTime": "1 - 00:05",
+      "label": "pass_received",
+      "position": "5240",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 132,
+      "gameTime": "1 - 00:05",
+      "label": "pass",
+      "position": "5280",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 179,
+      "gameTime": "1 - 00:07",
+      "label": "pass_received",
+      "position": "7160",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 286,
+      "gameTime": "1 - 00:11",
+      "label": "pass",
+      "position": "11440",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 299,
+      "gameTime": "1 - 00:11",
+      "label": "pass_received",
+      "position": "11960",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 343,
+      "gameTime": "1 - 00:13",
+      "label": "pass",
+      "position": "13720",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 356,
+      "gameTime": "1 - 00:14",
+      "label": "pass_received",
+      "position": "14240",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 439,
+      "gameTime": "1 - 00:17",
+      "label": "pass",
+      "position": "17560",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 469,
+      "gameTime": "1 - 00:18",
+      "label": "pass_received",
+      "position": "18760",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 549,
+      "gameTime": "1 - 00:21",
+      "label": "pass",
+      "position": "21960",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 637,
+      "gameTime": "1 - 00:25",
+      "label": "pass_received",
+      "position": "25480",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 638,
+      "gameTime": "1 - 00:25",
+      "label": "pass",
+      "position": "25520",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 664,
+      "gameTime": "1 - 00:26",
+      "label": "recovery",
+      "position": "26560",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 709,
+      "gameTime": "1 - 00:28",
+      "label": "pass",
+      "position": "28360",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

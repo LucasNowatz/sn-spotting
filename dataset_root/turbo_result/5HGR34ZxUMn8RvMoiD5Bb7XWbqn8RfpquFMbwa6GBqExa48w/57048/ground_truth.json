@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 432,
+      "gameTime": "1 - 00:17",
+      "label": "free_kick",
+      "position": "17280",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 471,
+      "gameTime": "1 - 00:18",
+      "label": "pass_received",
+      "position": "18840",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 472,
+      "gameTime": "1 - 00:18",
+      "label": "pass",
+      "position": "18880",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 505,
+      "gameTime": "1 - 00:20",
+      "label": "pass_received",
+      "position": "20200",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

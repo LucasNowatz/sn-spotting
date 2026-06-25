@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 416,
+      "gameTime": "1 - 00:16",
+      "label": "goal_kick",
+      "position": "16640",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 490,
+      "gameTime": "1 - 00:19",
+      "label": "aerial_duel",
+      "position": "19600",
+      "team": "left",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 491,
+      "gameTime": "1 - 00:19",
+      "label": "aerial_duel",
+      "position": "19640",
+      "team": "right",
+      "body_part": "head",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 588,
+      "gameTime": "1 - 00:23",
+      "label": "ball_out_of_play",
+      "position": "23520",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    }
+  ]
+}

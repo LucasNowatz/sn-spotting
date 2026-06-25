@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 12,
+      "gameTime": "1 - 00:00",
+      "label": "ball_out_of_play",
+      "position": "480",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 457,
+      "gameTime": "1 - 00:18",
+      "label": "clearance",
+      "position": "18280",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 502,
+      "gameTime": "1 - 00:20",
+      "label": "recovery",
+      "position": "20080",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 528,
+      "gameTime": "1 - 00:21",
+      "label": "shot",
+      "position": "21120",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 544,
+      "gameTime": "1 - 00:21",
+      "label": "clearance",
+      "position": "21760",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 628,
+      "gameTime": "1 - 00:25",
+      "label": "ball_out_of_play",
+      "position": "25120",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    }
+  ]
+}

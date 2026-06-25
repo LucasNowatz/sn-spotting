@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "fps_assumed": 25.0,
+  "annotations": [
+    {
+      "frame_index": 20,
+      "gameTime": "1 - 00:00",
+      "label": "ball_out_of_play",
+      "position": "800",
+      "team": "left",
+      "body_part": "not_applicable",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 414,
+      "gameTime": "1 - 00:16",
+      "label": "pass",
+      "position": "16560",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 441,
+      "gameTime": "1 - 00:17",
+      "label": "interception",
+      "position": "17640",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 473,
+      "gameTime": "1 - 00:18",
+      "label": "tackle",
+      "position": "18920",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 500,
+      "gameTime": "1 - 00:20",
+      "label": "recovery",
+      "position": "20000",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 501,
+      "gameTime": "1 - 00:20",
+      "label": "pass",
+      "position": "20040",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 534,
+      "gameTime": "1 - 00:21",
+      "label": "pass_received",
+      "position": "21360",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 535,
+      "gameTime": "1 - 00:21",
+      "label": "pass",
+      "position": "21400",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 638,
+      "gameTime": "1 - 00:25",
+      "label": "recovery",
+      "position": "25520",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 639,
+      "gameTime": "1 - 00:25",
+      "label": "pass",
+      "position": "25560",
+      "team": "right",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 701,
+      "gameTime": "1 - 00:28",
+      "label": "recovery",
+      "position": "28040",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 702,
+      "gameTime": "1 - 00:28",
+      "label": "pass",
+      "position": "28080",
+      "team": "left",
+      "body_part": "foot",
+      "visibility": "visible"
+    },
+    {
+      "frame_index": 728,
+      "gameTime": "1 - 00:29",
+      "label": "pass_received",
+      "position": "29120",
+      "team": "left",
+      "body_part": "body",
+      "visibility": "visible"
+    }
+  ]
+}
