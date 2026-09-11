@@ -1,0 +1,137 @@
+{
+  "additional_source_S": "no ozone source other than chemistry is applied; S is zero in every scenario, volume and window",
+  "archive_version": "o3-budget-archive-1.0",
+  "checksums_sha256": {
+    "00/fluxes.nc": "acf072378309948931a6d04520bd05151e2f01364e40ead4556f4054ef8872df",
+    "00/process.nc": "744305bb05d1c61a547a06ad01a1c5c5c1ebf745f1819721e44da6db144cef9e",
+    "00/state.nc": "f8a0658f9fca579779d0c294d3a755d4b4089c7c830490fe3778e855f83163fe",
+    "01/fluxes.nc": "8841b5cce35d6ef45877b0fced6ec0297e5fbbbe0006b6eb6a3512395769f318",
+    "01/process.nc": "de455493f8543a06f87775f22b700a616bc6ed27ce3841b87b0e8f6341829687",
+    "01/state.nc": "35feb302246ca1fa8ddb402dd9affdb48043a487e4ffef78cddb9b15211f7dee",
+    "10/fluxes.nc": "562e5c5a724be9a229e4ded66aefc04890168852a028d340f01be004f4560679",
+    "10/process.nc": "3be14d23c3f53e2701a68f023148a7aada89dc36661d080a52061f426d38b887",
+    "10/state.nc": "ac5743716a05916edf960323947f915cb855b4cac47854c1afa1113f7f6dea12",
+    "11/fluxes.nc": "ed5fabe16ac383a6938482a9029a6fef6f302de1581952cb7511b5e70448caee",
+    "11/process.nc": "de621772ffba27883f2939c327736a82cfc6c3fdcbc0330e079be7d69696c822",
+    "11/state.nc": "8a4e1484a5f01396ac16ce3e6ddf5f6331b9b63e677e3c13c3ae076306dd6a43",
+    "grid.nc": "d9d4ff0ef9405d0e1db73baaf1fa3883722c79f6f541ba33273a7ca365300efe",
+    "masks.nc": "aaacc35d07e11d86ba897c3682b8d77a86a1d6a1172fd2006ebbc489fd6d313f",
+    "meteo.nc": "1f24e4f62bb72d647322f68290ea45342c77f20deba20ab6c7e97c438ff5a8b7",
+    "receptors.csv": "1cb700aac25c5ac460034293ceae5f4afac2abfef828a7d843f2f60e84eca476"
+  },
+  "chemistry": {
+    "destruction_channels": [
+      "o3_loss_no",
+      "o3_loss_o1d",
+      "o3_loss_ho2",
+      "o3_loss_oh",
+      "o3_loss_alkene"
+    ],
+    "not_a_budget_term": [
+      "o3_prod_ox_diag"
+    ],
+    "note": "the listed channels are the complete set of O3 sources and sinks in RNV-LITE v1.2",
+    "production_channels": [
+      "o3_prod_jno2"
+    ]
+  },
+  "data_status": "synthetic; produced by a purpose-built regional chemistry-transport model, not by a public archive",
+  "deposition": {
+    "double_counting_warning": "the same removal is already contained in mix_flux_z at z_face index 0; a turbulent import term that excludes deposition must add o3_depos back to the summed mixing fluxes",
+    "variable": "o3_depos"
+  },
+  "diagnostic_volumes": {
+    "fixed_urban": "masks.nc variable fixed_urban, constant in time",
+    "moving_plume": "masks.nc variable moving_plume, weights in [0,1] on the same time axis as state.nc"
+  },
+  "grid": {
+    "array_order": "variables are stored as (time, x, y, z) or (dtime, x, y, z); face variables replace the staggered axis by its x_face / y_face / z_face counterpart",
+    "dx_m": 9000.0,
+    "dy_m": 9000.0,
+    "nx": 24,
+    "ny": 18,
+    "nz": 8,
+    "z_interfaces_m": [
+      0.0,
+      120.0,
+      300.0,
+      560.0,
+      900.0,
+      1350.0,
+      1900.0,
+      2550.0,
+      3300.0
+    ]
+  },
+  "mass_convention": "cell ozone mass = o3_vmr * 1e-9 * dry_air_mass * M(O3)/M(dry air), with dry_air_mass = air_mass * (1 - specific_humidity)",
+  "mechanism": "RNV-LITE v1.2",
+  "molar_mass_g_per_mol": {
+    "H2O": 18.0153,
+    "O3": 47.9982,
+    "dry_air": 28.9644
+  },
+  "scenarios": {
+    "00": "selected fire emissions off, selected urban emissions off",
+    "01": "selected fire emissions off, selected urban emissions on",
+    "10": "selected fire emissions on, selected urban emissions off",
+    "11": "selected fire emissions on, selected urban emissions on",
+    "direct_ozone_emission": 0.0,
+    "switched_species": [
+      "NO",
+      "NO2",
+      "CO",
+      "VOC",
+      "HCHO"
+    ],
+    "unchanged": [
+      "meteorology",
+      "initial state",
+      "boundary composition",
+      "biogenic and soil emissions",
+      "background CO source",
+      "photolysis forcing",
+      "deposition parameters"
+    ]
+  },
+  "time": {
+    "diagnostic_interval_s": 3600.0,
+    "model_time_step_s": 180.0,
+    "n_endpoints": 49,
+    "n_intervals": 48,
+    "note": "state.nc holds instantaneous endpoint values; process.nc and fluxes.nc hold quantities already integrated over the interval between two endpoints, so no quadrature of a rate is required",
+    "start_local_time": "06:00"
+  },
+  "units": {
+    "air_mass": "kg of moist air per cell",
+    "fluxes": "kg O3 per interval, signed, positive towards +x/+y/+z",
+    "o3_vmr": "ppbv, dry-air mole fraction (multiply by 1e-9)",
+    "process_increments": "kg O3 per interval, non-negative",
+    "specific_humidity": "kg water vapour per kg moist air"
+  },
+  "windows": {
+    "W1": {
+      "end_index": 14,
+      "end_s": 50400.0,
+      "start_index": 6,
+      "start_s": 21600.0
+    },
+    "W2": {
+      "end_index": 24,
+      "end_s": 86400.0,
+      "start_index": 16,
+      "start_s": 57600.0
+    },
+    "W3": {
+      "end_index": 34,
+      "end_s": 122400.0,
+      "start_index": 26,
+      "start_s": 93600.0
+    },
+    "W4": {
+      "end_index": 44,
+      "end_s": 158400.0,
+      "start_index": 34,
+      "start_s": 122400.0
+    }
+  }
+}
