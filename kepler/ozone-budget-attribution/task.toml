@@ -1,0 +1,88 @@
+schema_version = "1.4"
+
+artifacts = [
+    "/app/output/budgets.csv",
+    "/app/output/contrasts.csv",
+    "/app/output/receptors.csv",
+    "/app/output/diagnosis.json",
+    "/app/output/workflow",
+    "/app/output/workflow/RUN.txt",
+]
+
+[task]
+name = "afterquery/ozone-budget-attribution"
+description = "Close fixed-volume and moving-mask tropospheric ozone mass budgets for a wildfire plume crossing an urban region across four emission counterfactuals, and separate imported ozone from local net chemical production."
+authors = [{ name = "TODO AUTHOR NAME", email = "thomasli921215@gmail.com" }]
+keywords = [
+    "tropospheric ozone",
+    "chemistry-transport model",
+    "mass budget",
+    "wildfire plume",
+    "counterfactual emission scenarios",
+    "moving control volume",
+    "dry deposition",
+]
+
+[metadata]
+author_name = "TODO AUTHOR NAME"
+author_email = "thomasli921215@gmail.com"
+author_organization = "TODO AFFILIATION"
+author_profile = "TODO PROFILE URL"
+research_advisor = ""
+referred_by = ""
+conflicts_of_interest = "None"
+domain = "earth-sciences"
+field = "atmospheric-sciences"
+subfield = "Tropospheric ozone chemistry and transport budgets"
+category = "Science"
+subcategory = "Atmospheric & Climate Sciences"
+tags = [
+    "tropospheric ozone",
+    "chemistry-transport model",
+    "mass budget",
+    "wildfire plume",
+    "counterfactual emission scenarios",
+    "moving control volume",
+    "dry deposition",
+]
+expert_time_estimate_hours = 12
+relevant_experience = "TODO: describe your own hands-on work with tropospheric ozone budgets and chemistry-transport model process diagnostics, naming the models and the studies. Generic statements fail review."
+difficulty_explanation = """
+The data are synthetic. They come from a purpose-built regional chemistry-transport model written for this task: a 24x18x8 grid over 48 hours, a non-divergent dry-air mass flux field built as the discrete curl of an edge vector potential, flux-form upwind advection, explicit horizontal and implicit vertical diffusion with a dry deposition flux boundary condition, and a twelve-species reduced NOx-VOC mechanism integrated with five-second sub-steps. Every operator records its own integrated increment, so the recorded terms reproduce each cell's ozone mass change to fourteen significant figures, and the four runs share one meteorological realisation exactly.
+
+The work is hard for the same reasons a real budget study is hard, and none of it is trivia or obscurity. A solver has to get a long chain of dependent conventions right at once, and a single wrong convention moves every downstream number past tolerance. Ozone is a dry-air mole fraction while the archive supplies moist air mass and specific humidity, so the burden is wrong by one to two per cent if the conversion is skipped. The surface turbulent flux already carries the deposition removal that is also reported separately, so a turbulent import term assembled naively double counts it. Production is a single channel and destruction is five, one of which is the fast NO titration that dwarfs the net signal, and the archive also carries a radical-based ozone-production diagnostic that is explicitly not a budget term. The moving volume is graded through an exact discrete identity in which process increments take the start-of-interval weights while the mask-change term takes the end-of-interval cell masses; using either set of weights for both is a plausible and wrong choice. Transport has to be assembled from staggered face fluxes with a stated orientation and reported split by interface, which is what stops a residual-derived transport term from passing.
+
+On top of the mechanics sits the physics the task is really about. Four windows show four regimes: daytime net production with a negligible fire and city interaction, a night window where the plume arrives over the city and the ozone enhancement grows while local chemistry is a net sink, a daytime window where urban NOx makes the fire's chemical contribution strongly more positive, and a window where the plume leaves the domain and the mask-change term dominates everything else. Exactly one of the eight volume and window pairs satisfies the numeric test for transport sustaining the anomaly, so a solver who assumes that a positive enhancement means positive local production, or that the interaction is always amplifying, fails. An expert needs several sessions: reverse-engineering the archive conventions, building the aggregation, validating closure, then the counterfactual and exposure bookkeeping. There is nothing to look up online: the model, the archive and the expected values do not exist anywhere else.
+"""
+solution_explanation = """
+Read the manifest, then convert ozone to mass with the dry-air convention before anything else. Build per-cell net import by differencing the staggered face fluxes, keeping the lateral and vertical contributions apart, and add the deposition array back into the vertical turbulent part so that the separately reported removal is subtracted exactly once. Sum the single production channel and all five destruction channels for the gross chemistry, and ignore the radical diagnostic.
+
+Aggregate interval by interval. For each window, weight every process increment with the mask weights at the start of the interval, and accumulate the mask-change term separately as the weight change times the end-of-interval cell mass. For the fixed volume the weights are constant and that term vanishes, which is a useful self-check. Closure then holds to about one part in ten million of the burden, which is the float32 storage precision of the archive and tells you the conventions are right; a residual of a few per cent means one of them is not.
+
+With the eight budget tables in hand the rest is bookkeeping: difference matched runs for the fire and urban effects and the interaction, apply the same differencing to every term rather than to the total alone, and keep the non-zero initial anomalies in view so the final anomaly is not attributed entirely to the window. Receptor exposure is a weighted cell sum followed by a composite trapezoidal integral, with the forty ppbv threshold applied sample by sample before integrating, and every contrast metric is a difference of run metrics rather than a metric of a difference series. The labels then follow mechanically from the numbers and the published near-zero half-width.
+"""
+verification_explanation = """
+Ground truth is not produced by the reference solution. The forward model writes per-cell state, process increments and interface fluxes into the archive; a separate evaluator, written against the written NetCDF files with xarray whole-array reductions and sharing no code with the reference, aggregates those into the regional expectations that are sealed into tests/truth.json. The reference solution is a third, structurally different implementation using netCDF4 and explicit interval loops. The two agree to within one part in a hundred thousand of the grading tolerance on every one of the 1,352 scored numbers, and on all 104 label and threshold fields.
+
+The verifier runs offline in its own container and reads only the agent's artifacts and the sealed file. It grades every term separately, so a total that is right because two wrong terms cancel is rejected: burdens, both transport terms and their lateral and vertical splits, gross production, gross destruction, net chemistry, deposition, the additional source, the mask-change term and the residual, on all thirty-two rows. Closure is recomputed from the agent's own reported terms against the sealed endpoint burdens rather than trusting the residual column. The mask gate requires the change term to vanish on the fixed volume and to match on the moving one, and checks that it has not been folded into transport. Contrasts are checked against the sealed values and for internal consistency with the agent's own budget table; receptor contrasts are checked the same way. Labels are compared to the sealed labels and separately required to follow from the numbers the agent reported.
+
+Twenty shortcut and cheat baselines were run through the verifier and all scored zero: an empty attempt, all zeros, transport back-calculated from storage with the residual forced to zero, omitted deposition, double-counted deposition, moist instead of dry air mass, an omitted mask-change term, the mask-change term taken on the start state, end-of-interval process weights, the radical diagnostic used as production, a dropped destruction channel, a duplicated one, swapped runs, the threshold applied after integration instead of before, an unweighted receptor, peaks taken from a difference series, an always-amplifying interaction, a dominant-term rule that ignores the mask, labels derived from the sign of the enhancement, and the sustained-transport flag set from the enhancement alone. The reference scores one and an untouched environment scores zero.
+"""
+
+[verifier]
+timeout_sec = 1800.0
+environment_mode = "separate"
+
+[verifier.environment]
+network_mode = "no-network"
+
+[agent]
+timeout_sec = 14400.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 10240
+gpus = 0
+network_mode = "public"

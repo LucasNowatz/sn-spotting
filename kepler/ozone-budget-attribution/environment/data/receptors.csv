@@ -1,0 +1,8 @@
+receptor_id,i,j,k,weight
+R1_urban_core,15,10,0,1.00
+R2_downwind_suburb,19,9,0,0.36
+R2_downwind_suburb,20,9,0,0.24
+R2_downwind_suburb,19,10,0,0.24
+R2_downwind_suburb,20,10,0,0.16
+R3_rural_upwind,5,4,0,0.50
+R3_rural_upwind,5,5,0,0.50
