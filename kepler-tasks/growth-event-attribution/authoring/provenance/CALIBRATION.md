@@ -9,8 +9,8 @@ limit cannot satisfy both; its inputs are in `limit_inputs.json`.
 ## The achievable floor
 
 `calibrate.py`: the reference solver on the public 4 km grid at the true
-parameters against the 2 km generator truth. No solution can do better;
-the difference is representation error, not a modelling mistake.
+parameters against the generator's own run. No solution can do better;
+the difference is discretisation error, not a modelling mistake.
 
 | metric | 30 s | 60 s (reference) | 120 s |
 | --- | --- | --- | --- |
@@ -50,9 +50,9 @@ Per episode at 60 s (vapour, size distributions):
 - E07: 0.049, 0.164
 - E08: 0.049, 0.365
 
-Counterfactual statistics, 4 km solver at the truth against the 2 km runs:
+Counterfactual statistics, reference solver at the truth against the generator's runs:
 
-| statistic | 4 km at truth | 2 km truth | difference |
+| statistic | reference at truth | generator | difference |
 | --- | --- | --- | --- |
 | Q00 | 388.23 | 388.51 | -0.28 |
 | Q10 | 636.73 | 637.20 | -0.47 |
@@ -71,7 +71,7 @@ sd 16.87, restricted 13.90, variance share 0.32; A_C 213.9
 (truth 221.4), sd 3.29; corr(log_s_event, log_sA) -0.571.
 
 Parameter z-scores against the truth: +14.1, +0.7, -1.8, +0.9, -0.0, -3.8, -0.2, +1.3, -0.1, +2.4, -2.5, -4.1.
-Representation error of the 4 km grid is absorbed into the parameters; see
+Discretisation differences are absorbed into the parameters; see
 DESIGN_NOTES.md for why point values are graded only through the bounds.
 
 ## Rules

@@ -38,8 +38,8 @@ L = ["# Limit calibration", "",
      "limit cannot satisfy both; its inputs are in `limit_inputs.json`.", "",
      "## The achievable floor", "",
      "`calibrate.py`: the reference solver on the public 4 km grid at the true",
-     "parameters against the 2 km generator truth. No solution can do better;",
-     "the difference is representation error, not a modelling mistake.", "",
+     "parameters against the generator's own run. No solution can do better;",
+     "the difference is discretisation error, not a modelling mistake.", "",
      "| metric | 30 s | 60 s (reference) | 120 s |", "| --- | --- | --- | --- |"]
 for k, name in [("vapour", "withheld vapour, log NRMSE"), ("pnsd", "withheld size distributions, weighted log RMSE"),
                 ("diameter", "number-weighted diameter MAE, nm"), ("domain_share_l1", "domain region shares, L1"),
@@ -63,8 +63,8 @@ L += [f"| worst counterfactual difference, cm-3 | "
       "", "Per episode at 60 s (vapour, size distributions):", ""]
 for e in sorted(fl["per_episode"]):
     L.append(f"- {e}: {fl['per_episode'][e][0]:.3f}, {fl['per_episode'][e][1]:.3f}")
-L += ["", "Counterfactual statistics, 4 km solver at the truth against the 2 km runs:", "",
-      "| statistic | 4 km at truth | 2 km truth | difference |", "| --- | --- | --- | --- |"]
+L += ["", "Counterfactual statistics, reference solver at the truth against the generator's runs:", "",
+      "| statistic | reference at truth | generator | difference |", "| --- | --- | --- | --- |"]
 for k in ("Q00", "Q10", "Q01", "Q11", "A_E", "A_C"):
     L.append(f"| {k} | {qp[k]:.2f} | {ta[k]:.2f} | {qp[k] - ta[k]:+.2f} |")
 c = o["calibration"]; a = o["attr"]
@@ -76,7 +76,7 @@ L += ["", "## The oracle", "",
       f"sd {a['A_E_sd']:.2f}, restricted {a['A_E_sd_fixed']:.2f}, variance share {a['share_E']:.2f}; A_C {a['A_C']:.1f}",
       f"(truth {ta['A_C']:.1f}), sd {a['A_C_sd']:.2f}; corr(log_s_event, log_sA) {a['corr']:.3f}.", "",
       "Parameter z-scores against the truth: " + ", ".join(f"{z:+.1f}" for z in o["z_scores"]) + ".",
-      "Representation error of the 4 km grid is absorbed into the parameters; see",
+      "Discretisation differences are absorbed into the parameters; see",
       "DESIGN_NOTES.md for why point values are graded only through the bounds.", "",
       "## Rules", "",
       "Accuracy limits: the larger of a multiple of the floor and of the oracle",

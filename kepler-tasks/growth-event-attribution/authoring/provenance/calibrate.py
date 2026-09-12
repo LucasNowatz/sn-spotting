@@ -1,5 +1,5 @@
 """Achievable floor: the reference solver at the true parameters on the
-public 4 km grid against the 2 km generator truth.  Sets every limit.
+public 4 km grid against the generator's own run.  Sets every limit.
 
     python calibrate.py [n_jobs] [dt_seconds] [koren|mc|fine]
 
