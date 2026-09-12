@@ -1,54 +1,33 @@
-Identifiability of the twelve log-parameters
-==============================================
-visible observations: 5376 (vapour and usable count channels), whitened with the full published covariance
+Whitened identifiability at the truth
+========================================
+usable observations: 8292
+singular values: 2.7e+03 708 534 438 199 156 100 72.6 63.7 25.6 14.4 7.03
+condition number: 384.1
+degrees of freedom for signal: 11.87 of 12
 
-per-parameter rms whitened response to +0.02 in the log
-  log_Kh           0.0943
-  log_we           0.0083
-  log_tauv         0.2088
-  log_Yorg         0.2806
-  log_betaorg      0.2845
-  log_Heff         0.1763
-  log_taup         0.0084
-  log_sA           0.0259
-  log_sB           0.0177
-  log_sC           0.0203
-  log_s_event      0.0143
-  log_q_event      0.1849
+parameter        post sd  prior sd   ratio
+log_Kh            0.0023     0.350   0.007
+log_we            0.1224     0.450   0.272
+log_tauv          0.0062     0.400   0.016
+log_Yorg          0.0107     0.300   0.036
+log_betaorg       0.0096     0.400   0.024
+log_Heff          0.0031     0.300   0.010
+log_taup          0.0869     0.450   0.193
+log_sA            0.0258     0.350   0.074
+log_sB            0.0234     0.350   0.067
+log_sC            0.0225     0.350   0.064
+log_s_event       0.0271     0.350   0.078
+log_q_event       0.0015     0.300   0.005
 
-singular values of the whitened data Jacobian: 1.78e+03  502  408  338  165  111  67.2  64.6  61.8  26.9  17.6  8.73
-condition number: 203.8
-weakest direction:
-  log_we         +0.931
-  log_taup       +0.361
-  log_betaorg    -0.027
-  log_Yorg       +0.024
-  log_sC         -0.022
-
-degrees of freedom for signal: 11.91 of 12
-
-linearised posterior sd at the truth
-  parameter       data only  with prior   prior  post/prior
-  log_Kh             0.0031      0.0031   0.350       0.009
-  log_we             0.1082      0.1049   0.450       0.233
-  log_tauv           0.0065      0.0065   0.400       0.016
-  log_Yorg           0.0122      0.0122   0.300       0.041
-  log_betaorg        0.0104      0.0104   0.400       0.026
-  log_Heff           0.0033      0.0032   0.300       0.011
-  log_taup           0.0632      0.0621   0.450       0.138
-  log_sA             0.0258      0.0256   0.350       0.073
-  log_sB             0.0248      0.0246   0.350       0.070
-  log_sC             0.0237      0.0236   0.350       0.067
-  log_s_event        0.0271      0.0270   0.350       0.077
-  log_q_event        0.0020      0.0020   0.300       0.007
-
-posterior correlations above 0.6 in magnitude
-  log_we         log_Heff       -0.666
-  log_Yorg       log_betaorg    -0.922
-  log_sA         log_sB         +0.741
-  log_sA         log_sC         +0.742
-
-correlations involving the event anomalies
-  log_s_event    log_sA         -0.533
-  log_s_event    log_sB         -0.520
-  log_s_event    log_sC         -0.589
+posterior correlations beyond 0.5
+  log_we         log_tauv       +0.595
+  log_we         log_Heff       -0.820
+  log_we         log_taup       +0.569
+  log_tauv       log_Heff       -0.515
+  log_Yorg       log_betaorg    -0.917
+  log_sA         log_sB         +0.892
+  log_sA         log_sC         +0.825
+  log_sA         log_s_event    -0.570
+  log_sB         log_sC         +0.766
+  log_sB         log_s_event    -0.599
+  log_sC         log_s_event    -0.649

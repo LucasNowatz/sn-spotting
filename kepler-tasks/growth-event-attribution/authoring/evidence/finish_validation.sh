@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Run the sealed verifier on the oracle (three times), on an empty submission
-# and on every baseline, four at a time, and record the outcome in runs.txt.
+# Run the sealed verifier on the oracle (three times), an empty submission and
+# every baseline, four at a time; record the outcome in runs.txt.
 #   finish_validation.sh <oracle_dir> <baseline_root> <python>
 set -u
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -10,7 +10,7 @@ OUT="$HERE/verifier_runs"
 rm -rf "$OUT"; mkdir -p "$OUT" /tmp/nop_empty
 run_one() {
     name="$1"; sub="$2"
-    ( cd "$ROOT/tests" && GEA_SUBMISSION="$sub" "$PY" -m pytest test_science.py \
+    ( cd "$ROOT/tests" && EA_SUBMISSION="$sub" "$PY" -m pytest test_verify.py \
         -p no:cacheprovider -q --tb=line > "$OUT/$name.log" 2>&1 )
     tail -1 "$OUT/$name.log" | sed "s/^/$name: /"
 }

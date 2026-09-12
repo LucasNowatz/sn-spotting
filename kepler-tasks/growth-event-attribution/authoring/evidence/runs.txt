@@ -1,17 +1,16 @@
-Sealed verifier runs against the calibrated thresholds (outside Docker)
-======================================================================
-climatology: 10 failed, 3 passed, 1 warning in 43.13s
-diagonal_chi2: 1 failed, 12 passed, 1 warning in 42.12s
-false_sensitivity: 1 failed, 12 passed, 1 warning in 42.20s
-guessed_attribution: 10 failed, 3 passed, 1 warning in 42.52s
-hedged: 3 failed, 10 passed, 1 warning in 41.42s
-linearised_attribution: 1 failed, 12 passed, 1 warning in 42.11s
-nearest_station: 10 failed, 3 passed, 1 warning in 42.56s
-no_anomaly: 2 failed, 11 passed, 1 warning in 42.98s
-nop: 13 failed in 0.23s
-oracle_1: 13 passed, 1 warning in 43.89s
-oracle_2: 13 passed, 1 warning in 44.96s
-oracle_3: 13 passed, 1 warning in 43.42s
-shuffled_predictions: 6 failed, 7 passed, 1 warning in 42.46s
-wrong_operator: 3 failed, 10 passed, 1 warning in 41.13s
-zero_width: 3 failed, 10 passed, 1 warning in 40.71s
+nop: 12 failed in 0.17s
+oracle_2: 12 passed, 1 warning in 71.03s (0:01:11)
+climatology: 10 failed, 2 passed, 1 warning in 71.79s (0:01:11)
+oracle_1: 12 passed, 1 warning in 72.50s (0:01:12)
+oracle_3: 12 passed, 1 warning in 74.84s (0:01:14)
+copied_attribution: 10 failed, 2 passed, 1 warning in 66.69s (0:01:06)
+diagonal_chi2: 1 failed, 11 passed, 1 warning in 66.04s (0:01:06)
+false_sensitivity: 1 failed, 11 passed, 1 warning in 67.78s (0:01:07)
+hedged: 3 failed, 9 passed, 1 warning in 70.68s (0:01:10)
+nearest_station: 10 failed, 2 passed, 1 warning in 66.59s (0:01:06)
+no_anomaly: 2 failed, 10 passed, 1 warning in 65.80s (0:01:05)
+linearised: 1 failed, 11 passed, 1 warning in 70.78s (0:01:10)
+shuffled: 6 failed, 6 passed, 1 warning in 66.22s (0:01:06)
+uniform_shares: 1 failed, 11 passed, 1 warning in 64.54s (0:01:04)
+wrong_operator: 4 failed, 8 passed, 1 warning in 63.95s (0:01:03)
+zero_width: 3 failed, 9 passed, 1 warning in 68.42s (0:01:08)

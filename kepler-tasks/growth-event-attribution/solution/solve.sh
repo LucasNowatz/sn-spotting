@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-# Reference solution: staged Bayesian inversion, counterfactual attribution,
-# restricted sensitivity analysis, withheld predictions and lineage.
+# Reference solution: Bayesian inversion, counterfactual attribution,
+# restricted sensitivity analysis, withheld predictions and region shares.
 set -euo pipefail
-
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p /app/output /app/work
 cp -r "$HERE/src/." /app/work/
-chmod +x /app/work/run.py
-
-python /app/work/run.py --input-dir /app/data --output-dir /app/output
+python /app/work/pipeline.py --data /app/data --out /app/output

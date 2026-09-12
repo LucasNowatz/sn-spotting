@@ -1,46 +1,41 @@
-# Attributing a nanoparticle growth event under regional transport
+# Nucleation or condensation: attributing a growth event
 
-The synthetic regional observing system in /app/data covers eight 10-hour episodes of new-particle formation and growth in a 300 km by 240 km boundary layer: gridded meteorology, prescribed precursor and nucleation forcing, and sparse station records of condensable organic vapour and nanoparticle size distributions. Four episodes are event days on which the grown-particle population is enhanced. The enhancement can come from more nucleation or from more condensable vapour that grows fresh particles to larger sizes before they are lost. Separate those two causes, state honestly how well the data separate them, and say how much of that uncertainty comes from the poorly known strength of the three nucleation source regions.
+/app/data holds a synthetic regional observing system: eight 8-hour episodes of new-particle formation and growth in a 280 km by 200 km mixed layer, with gridded meteorology, published precursor and nucleation forcing, and station records of condensable vapour and nanoparticle size distributions from six stations on six days. Two further stations and two further days are withheld. On four event days the population of particles that have grown past 3.9 nm is larger than usual. Two mechanisms can produce that: stronger nucleation, or more condensable vapour that grows fresh particles into the larger bins before they are lost. Your job is to say how much of the enhancement each mechanism is responsible for, how confidently the data support that split, how much of the uncertainty is caused by the poorly known strength of the three nucleation regions, and which regions the grown particles came from.
 
-Station records are Eulerian: different air parcels pass each instrument over time, so a change in modal diameter at a station is not growth alone. The two causes interact through survival, since how many particles reach the grown size range depends on how fast they grow, so the decomposition is a property of the full coupled system and not of one-at-a-time perturbations around a fitted optimum.
+The records are Eulerian. Air masses replace one another at a fixed station, so a shift in the modal diameter there is not growth alone. The two mechanisms also interact: survival into the grown bins depends on growth rate, so the decomposition belongs to the coupled system and cannot be read off one-at-a-time perturbations around a fitted optimum.
 
-Twelve unknown log-parameters, shared across all episodes, control transport, dilution, vapour lifetime and yield, growth, particle loss, the strength of each source region and the two event-day anomalies. A non-diagonal Gaussian prior on all twelve is published. Observation errors are correlated in time with a per-deployment bias, and their full covariance is published. Each station has its own sizing operator. The data are synthetic: one draw of the parameters from the prior and one draw of the errors from the published covariance, run through the equations in the specification.
+Twelve unknown log-parameters, common to every episode, govern mixing, dilution, vapour lifetime and yield, growth, particle loss, the strength of each source region, and the two event-day anomalies. Their Gaussian prior is published and is not diagonal. Station errors are correlated in time and carry a per-deployment bias; their full covariance is published, and every station has its own sizing operator. The truth is one draw of the parameters from the prior and one draw of the errors from that covariance.
 
 ## Inputs
 
-`/app/data/model_spec.md` is the scientific contract: coordinates, wind convention, governing equations, event-day multipliers, growth law and constants, backgrounds, observation operators and error model, the lineage diagnostics, and the event statistic with its counterfactual decomposition. `/app/data/data_manifest.json` lists every file, its checksum and the observed/withheld split.
+`/app/data/specification.md` fixes everything the verifier relies on: coordinates, winds, equations, event-day multipliers, growth law, backgrounds, operators, error model, log floors, the event statistic, its decomposition, and the region shares. `/app/data/dataset_manifest.json` lists the files with checksums and the observed/withheld split.
 
-Also under `/app/data`: `priors.json`, `stations.csv`, `size_bins.csv`, `sizing_operators.nc`, `error_covariance.nc`, `prediction_index.csv`, `calibration_index.csv`, `history_queries.csv`, `episode_index.json`, and `episodes/E01` to `episodes/E08`, each with `met.nc`, `forcing.nc` and `observations.nc`.
+Also in `/app/data`: `prior.json`, `network.csv`, `diameter_bins.csv`, `instruments.nc`, `error_model.nc`, `withheld_index.csv`, `calibration_index.csv`, `episodes.json`, and `episodes/E01` to `E08` each with `meteorology.nc`, `sources.nc` and `station_records.nc`.
 
-## What you are asked for
+## Questions to answer
 
-Infer the twelve parameters from the visible observations and the prior, with a posterior you would defend, then answer three questions.
+Infer the twelve parameters from the visible records and the prior, with a posterior you would stand behind, then:
 
-**How large is the event enhancement, and what caused it?** The event statistic `Q` (specification section 12) is the domain-mean number of particles larger than 3.92 nm over the last four hours, averaged over the four event days. Group the controls into a nucleation group `E` (`log_s_event`) and a condensation group `C` (`log_q_event`). Switching a group off sets its log-parameter to zero with every other parameter at its inferred value; every counterfactual is a full re-integration. With
+**Decompose the event.** With `Q` the event statistic of specification section J, the nucleation group `E` = {`log_s_event`} and the condensation group `C` = {`log_q_event`}, switch each group off by zeroing its log-parameter while everything else keeps its inferred value, re-integrate the system in full for each of the four combinations, and report
 
 ```
 Q00 = Q(E off, C off)   Q10 = Q(E on,  C off)
 Q01 = Q(E off, C on )   Q11 = Q(E on,  C on )
+A_E = 0.5 [ (Q10 - Q00) + (Q11 - Q01) ]
+A_C = 0.5 [ (Q01 - Q00) + (Q11 - Q10) ]
 ```
 
-report
+with `A_E + A_C = Q11 - Q00` exactly, and the posterior standard deviation of `A_E` and `A_C`.
 
-```
-A_E = 0.5 * [ (Q10 - Q00) + (Q11 - Q01) ]
-A_C = 0.5 * [ (Q01 - Q00) + (Q11 - Q10) ]
-```
+**Price the source strengths.** Redo the uncertainty analysis with `log_sA`, `log_sB`, `log_sC` held at their prior means and all else free, and report the standard deviations of `A_E` and `A_C` from that restricted analysis next to the joint ones, plus the posterior correlation between `log_s_event` and `log_sA`.
 
-which satisfies `A_E + A_C = Q11 - Q00` exactly, with the posterior standard deviation of each term.
+**Predict what was withheld.** For every row of `withheld_index.csv` give vapour and the reported size distribution with a predictive standard deviation, in natural-log space, for the noisy record. For every event day give the region shares of the grown number, domain-wide and at W1 and W2, as defined in section J.
 
-**How much do the source strengths cost you?** Repeat the uncertainty analysis with `log_sA`, `log_sB` and `log_sC` fixed at their prior means and everything else free, and report the standard deviations of `A_E` and `A_C` from that restricted analysis beside the joint ones. Report the posterior correlation between `log_s_event` and `log_sA` as well.
-
-**What do the observations say where you cannot see them?** Predict vapour and the post-operator size distribution at every row of `prediction_index.csv`, each with a predictive standard deviation in natural-log space for the noisy observation. Reconstruct the air-mass history behind every row of `history_queries.csv`.
-
-Say what the data cannot determine: a tight interval on a prior-dominated direction is a worse answer than a wide one.
+Where the data leave a direction close to the prior, say so with a wide interval rather than a narrow one.
 
 ## Deliverables
 
-Write exactly these four files; `/app/output` exists.
+Exactly these four files; `/app/output` exists.
 
 `/app/output/posterior.json`
 
@@ -56,11 +51,9 @@ Write exactly these four files; `/app/output` exists.
 }
 ```
 
-`param_ids` must equal the order in `priors.json`. `estimate` is in log coordinates, `ci_lower`/`ci_upper` the central 95 per cent credible interval, `posterior_prior_sd_ratio` each posterior sd divided by the prior sd, and `dof_signal` is `trace(I - Sigma_posterior B^-1)` with `B` the prior covariance. `chi2_calibration` is `r^T R^-1 r` over every usable visible observation at your estimate, in log space with the specification's log floors, using the full published block covariance restricted to the usable channels; `chi2_by_stream` splits it into vapour and count blocks.
+`param_ids` in the order of `prior.json`; `estimate` in log coordinates; `ci_lower`/`ci_upper` the central 95 per cent credible interval; `posterior_prior_sd_ratio` each posterior sd over the prior sd; `dof_signal = trace(I - Sigma_post B^-1)` with `B` the prior covariance; `chi2_calibration = r^T R^-1 r` over every usable visible value at your estimate, in log space with the specification's floors, with the full published covariance restricted to usable channels; `chi2_by_stream` its vapour and count parts.
 
-`/app/output/predictions.npz` with six arrays. Indexed by `row_id` of `prediction_index.csv`: `vapour` `(n_rows,)` in ug m-3, `vapour_log_sd` `(n_rows,)`, `pnsd` `(n_rows, 12)` in cm-3 after the station operator, `pnsd_log_sd` `(n_rows, 12)`; the `_log_sd` arrays are predictive standard deviations of the log of the noisy observation, observation error included. Indexed by `row_id` of `calibration_index.csv`: `fit_vapour` `(n_cal,)` and `fit_pnsd` `(n_cal, 12)`, your model's values at your estimate at the visible station-times, same units, after the operator; these are what `chi2_calibration` is computed from.
-
-`/app/output/airmass_history.csv` with one row per row of `history_queries.csv` and columns `query_id, mean_particle_age_hr, source_fraction_A, source_fraction_B, source_fraction_C`. The fractions must sum to one.
+`/app/output/predictions.npz` with six arrays. By `row_id` of `withheld_index.csv`: `vapour` `(n,)` ug m-3, `vapour_log_sd` `(n,)`, `pnsd` `(n, 12)` cm-3 after the station operator, `pnsd_log_sd` `(n, 12)`; the `_log_sd` arrays are the predictive sd of the log of the noisy record, observation error included. By `row_id` of `calibration_index.csv`: `fit_vapour` `(m,)` and `fit_pnsd` `(m, 12)`, your model at your estimate at the visible station-times, same units, after the operator; `chi2_calibration` is computed from these.
 
 `/app/output/attribution.json`
 
@@ -75,20 +68,30 @@ Write exactly these four files; `/app/output` exists.
 }
 ```
 
-Every numeric field must be finite. Further keys are ignored.
+`/app/output/region_shares.json`
 
-## How the result is judged
+```json
+{
+  "domain":   {"E02": {"A": 0.0, "B": 0.0, "C": 0.0}, "E03": {...}, "E06": {...}, "E08": {...}},
+  "stations": {"E02": {"W1": {"A": 0.0, "B": 0.0, "C": 0.0}, "W2": {...}}, "E03": {...}, "E06": {...}, "E08": {...}}
+}
+```
 
-A sealed verifier applies these checks; all must pass.
+Shares are non-negative and sum to at most one per vector. All numbers must be finite; extra keys are ignored.
 
-1. **Schema and bounds.** Files present with the right shapes and order, values finite, spreads positive, fractions normalised, the estimate inside the published bounds.
-2. **Withheld predictions.** Vapour, size distributions, a number-weighted diameter derived from them, mean particle age and source fractions are compared with an independent finer-resolution simulation, under tolerances combining the published error model with a representation-error floor. Both withheld episodes must pass on their own.
-3. **Predictive calibration.** Your 90 per cent intervals must cover the withheld noisy observations at 80 to 97 per cent, for vapour and counts separately, and the mean Gaussian log score must beat a threshold that penalises intervals too wide as well as too narrow.
-4. **Posterior honesty.** The posterior-to-prior sd ratio is checked for three parameters against bands, and `dof_signal` must lie in a band. Point values are graded only through the bounds, because correct solvers with different numerical diffusion land at different points of the same valley.
-5. **Attribution.** The four statistics must match the verifier's recomputation from your estimate, `A_E + A_C` must equal `Q11 - Q00`, `A_E` and `A_C` must lie within a tolerance of the generator's counterfactual truth, and their standard deviations within a band. A linearised decomposition, or one that never moves the anomalies, does not survive this.
-6. **Sensitivity.** The restricted standard deviations must be smaller than the joint ones, the variance share `1 - (sd_fixed / sd_full)^2` for `A_E` must lie in a band, and so must the reported correlation.
-7. **Forward consistency.** Your estimate is re-run through a trusted forward model that must reproduce your predictions, fitted values and counterfactual statistics, and your reported chi-square must equal the one recomputed from your fitted values with the full covariance. A diagonal-covariance fit that reports its own chi-square fails here.
+## Grading
 
-The numerical method, internal grid, optimiser, uncertainty method and language are yours, so long as they implement `model_spec.md`. Partial credit does not exist.
+A sealed verifier applies twelve checks and all must pass:
+
+1. Schema and bounds: files, shapes, order, finiteness, positive spreads, the estimate inside the published bounds.
+2. Withheld vapour, size distributions and a number-weighted diameter derived from them, against a finer-resolution seeded simulation, within tolerances built from the error model and a representation floor; both withheld episodes must pass on their own.
+3. Region shares, domain-wide and at the withheld stations, against tagged-tracer truth.
+4. Predictive calibration: 90 per cent intervals must cover the withheld noisy records at the stated rate, vapour and counts separately, and a Gaussian log score must beat a threshold that punishes hedging as well as overconfidence.
+5. Posterior: width ratios for three parameters and `dof_signal` within bands set from what these data support. Point values are graded only through the bounds, since correct solvers with different numerical diffusion land at different points of one valley.
+6. Attribution: the four statistics must agree with a sealed re-run from your estimate, `A_E + A_C` must equal `Q11 - Q00`, `A_E` and `A_C` must lie within a tolerance of the generator's own counterfactuals, and their spreads within a band. A linearised split, or one that never moves the anomalies, fails.
+7. Sensitivity: restricted spreads smaller than joint ones, the variance share `1 - (sd_fixed/sd_full)^2` of `A_E` within a band, and the correlation within a band.
+8. Sealed re-run: predictions and fitted values must match a re-run from your estimate, and your reported chi-square must equal the value recomputed from your fitted values with the full covariance. A diagonal-covariance fit that reports its own chi-square fails.
+
+Numerics, grid, optimiser, uncertainty method and language are free, provided they implement `specification.md`. There is no partial credit.
 
 You have 28800 seconds to complete this task. Do not cheat by using online solutions or hints specific to this task.

@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
-# Run the sealed verifier on a submission directory outside Docker.
-#   run_gates.sh <submission_dir> [pytest args]
+# Run the sealed verifier on one submission directory outside Docker.
 set -u
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="$(cd "$HERE/../.." && pwd)"
-SUB="$1"; shift
-cd "$ROOT/tests"
-GEA_SUBMISSION="$SUB" python -m pytest test_science.py -p no:cacheprovider -q --tb=line "$@"
+cd "$HERE/../../tests"
+EA_SUBMISSION="$1" python -m pytest test_verify.py -p no:cacheprovider -q --tb=line

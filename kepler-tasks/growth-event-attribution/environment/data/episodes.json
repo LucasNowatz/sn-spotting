@@ -1,0 +1,140 @@
+[
+  {
+    "episode": "E01",
+    "status": "observed",
+    "event_day": false,
+    "regime": "warm, deep boundary layer, near-steady south-westerly",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "3cd590ed37343260f8cf4e7ef8ed0b4325a01c5a2056bb7eec30769936a03ec3",
+      "sources.nc": "95e6c74f9048b768557a30e9985b20676e896ed66b41805bf344634350458aac",
+      "station_records.nc": "aabe4382078681e1f864a4fc5db700e54b4d355b23b14234881a463352e1aa8a"
+    }
+  },
+  {
+    "episode": "E02",
+    "status": "observed",
+    "event_day": true,
+    "regime": "cool, shallow boundary layer, westerly; event day",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "c2ef0f8cdc4c852da0ae8f51f73761424485223791b7bef85e85ef0cfa0b4ea3",
+      "sources.nc": "4d814980557921a4c5fa3df50707c2624ac477fe4c681d111887359a249e6510",
+      "station_records.nc": "627e9449b88e041d168382a6385ad4927540969b422a007c4f2babdb90ecf6ee"
+    }
+  },
+  {
+    "episode": "E03",
+    "status": "observed",
+    "event_day": true,
+    "regime": "warm, slack flow with a strong eddy; event day",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "bffa9f849169073ff9b4e0dbb53064686ebb1fb3f89bfed6006ac86d9fee39d1",
+      "sources.nc": "39960988d2f0bdb2e431ce9f814cb4ae52392bccb0534ee3c7a1644bf7d455f1",
+      "station_records.nc": "e508557c332dae787fc4b86b3b0792eda754a7a24d31673be6ea6bde4b41e0b1"
+    }
+  },
+  {
+    "episode": "E04",
+    "status": "observed",
+    "event_day": false,
+    "regime": "mild, wind backs through 70 degrees",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "83782a8c2c594baa576589ae2b8e38d92d39a3fb5fb0aa34afc51f920f4fce6b",
+      "sources.nc": "50c8dfcf5b042cf1bebd582f262828d6c5a9e576e3ea1f752dea305b05eaba52",
+      "station_records.nc": "dd2b2c26e54cd87ca8c4fc158a8cc7164ab47298f692ab53e7343a3478fc1d1b"
+    }
+  },
+  {
+    "episode": "E05",
+    "status": "observed",
+    "event_day": false,
+    "regime": "cool, sheared westerly jet across the middle of the domain",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "6844042f2697f0dac6fe84554cb80e2faa433c60349aab6fe6abcf8686cf5781",
+      "sources.nc": "cf74e96c1f73aeac81abf195aa332ca645f4be339ce4cf9801ea63d68a4fc86e",
+      "station_records.nc": "06806d5083f89dfe6fb05c495a0aa9e05c59a7ce80dc070412373f853bf7ed42"
+    }
+  },
+  {
+    "episode": "E06",
+    "status": "observed",
+    "event_day": true,
+    "regime": "mild, fast transit with a weak jet; event day",
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "files": {
+      "meteorology.nc": "1d237f89f1a2e58b0441e065a19b114844dae26bc3035194430e3c8410f82742",
+      "sources.nc": "412d555cf489a0edf94367c1818b271345f1322d7a36f4cb4fa3ba36554f79aa",
+      "station_records.nc": "6720a1fef5df4cc5d1d74de91370437f0a3dc8493caaaf6b73fff36318654015"
+    }
+  },
+  {
+    "episode": "E07",
+    "status": "withheld",
+    "event_day": false,
+    "regime": "cool, growing boundary layer, turning sheared flow",
+    "observed_stations": [],
+    "files": {
+      "meteorology.nc": "be04acffd0ee731f67dfba3360f3ac6437977df5fd5003b5a9db18a116e79335",
+      "sources.nc": "6fe200196ad4bd659404cb51f3b85ba759a72beb97152aa29a2b4981b4ead333",
+      "station_records.nc": "4789e45af101604c4a6562d027cf0810515b29c99bf3212fbabd7de249f544fd"
+    }
+  },
+  {
+    "episode": "E08",
+    "status": "withheld",
+    "event_day": true,
+    "regime": "warm, collapsing boundary layer, moderate shear; event day",
+    "observed_stations": [],
+    "files": {
+      "meteorology.nc": "f4aa6fa693efcd9e38dc5ba41d8c6d6f5b7876d94e30ffb680f2f86b69bbaf00",
+      "sources.nc": "a30e9bb46305a4d8f171e6949f23d4572f09917f7143ef06c46d5d81e5a349b6",
+      "station_records.nc": "4789e45af101604c4a6562d027cf0810515b29c99bf3212fbabd7de249f544fd"
+    }
+  }
+]

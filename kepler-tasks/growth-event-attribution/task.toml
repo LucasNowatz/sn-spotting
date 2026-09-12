@@ -2,23 +2,23 @@ schema_version = "1.4"
 artifacts = [
     "/app/output/posterior.json",
     "/app/output/predictions.npz",
-    "/app/output/airmass_history.csv",
     "/app/output/attribution.json",
+    "/app/output/region_shares.json",
 ]
 
 [task]
 name = "afterquery/growth-event-attribution"
-description = "Invert a synthetic regional transport and nanoparticle-growth system with correlated observation errors and a non-diagonal prior, then decompose a growth-event enhancement into nucleation and condensation contributions with calibrated uncertainty, quantify how much of that uncertainty the unknown source strengths carry, and predict withheld stations and episodes with calibrated predictive distributions."
+description = "Invert a synthetic regional nanoparticle transport-and-growth system under correlated station errors and a non-diagonal prior, decompose a growth-event enhancement into nucleation and condensation by full counterfactual re-integration with calibrated uncertainty, price the poorly known regional source strengths, attribute the grown particles to their source regions, and predict withheld stations and days with calibrated spreads."
 authors = [{ name = "George Strong", email = "georgesmartlee23@gmail.com" }]
 keywords = [
-    "atmospheric transport",
-    "aerosol microphysics",
     "new particle formation",
-    "bayesian inverse modeling",
+    "nanoparticle growth",
+    "regional transport",
     "counterfactual attribution",
-    "uncertainty quantification",
+    "bayesian inversion",
     "correlated observation errors",
-    "air-mass history",
+    "source apportionment",
+    "uncertainty quantification",
 ]
 
 [metadata]
@@ -31,126 +31,115 @@ referred_by = ""
 conflicts_of_interest = "None"
 domain = "earth-sciences"
 field = "atmospheric-sciences"
-subfield = "regional aerosol transport, nanoparticle growth and Bayesian source attribution"
+subfield = "aerosol nucleation and growth, regional transport, Bayesian attribution"
 category = "Science"
 subcategory = "Atmospheric & Climate Sciences"
 tags = [
-    "atmospheric-transport",
-    "aerosol-microphysics",
     "new-particle-formation",
-    "bayesian-inference",
+    "nanoparticle-growth",
+    "regional-transport",
     "counterfactual-attribution",
-    "uncertainty-quantification",
+    "bayesian-inversion",
     "correlated-errors",
+    "source-apportionment",
     "boundary-layer",
     "netcdf",
 ]
 expert_time_estimate_hours = 20
-relevant_experience = "My background is in computational physics, machine learning, neuroimaging, and inverse problems. I hold a PhD in Machine Learning for Ultrasound Neuroimaging from Imperial College London and have experience developing and applying tomography, adjoint-state methods, full-waveform inversion, numerical simulations, and distributed GPU-based optimisation for imaging problems. My research and publications include probabilistic approaches to tomography and adjoint-state methods, full-waveform inversion, and high-performance computational imaging. I have also worked extensively with Python, CUDA, parallel computing, GPU clusters, and numerical modelling. This task combines a conservative finite-volume transport solver coupled to size-resolved aerosol microphysics with a Bayesian inversion under correlated errors and a counterfactual decomposition, which are the same building blocks I use in probabilistic tomography: a PDE forward model, a whitened Gaussian objective, Gauss-Newton posteriors and their propagation onto derived quantities."
+relevant_experience = "My background is in computational physics, machine learning, neuroimaging, and inverse problems. I hold a PhD in Machine Learning for Ultrasound Neuroimaging from Imperial College London and have experience developing and applying tomography, adjoint-state methods, full-waveform inversion, numerical simulations, and distributed GPU-based optimisation for imaging problems. My research and publications include probabilistic approaches to tomography and adjoint-state methods, full-waveform inversion, and high-performance computational imaging. I have also worked extensively with Python, CUDA, parallel computing, GPU clusters, and numerical modelling. The building blocks of this task, a conservative finite-volume forward model coupled to size-resolved microphysics, a whitened Gaussian objective under a full error covariance, Gauss-Newton posteriors and their propagation through a nonlinear counterfactual map, are the ones I use daily in probabilistic tomography."
 difficulty_explanation = """
-The data are synthetic and the manifest says so: a seeded conservative
-finite-volume simulator at 2.5 km with a 30 s step and source-tagged tracers
-on an analytic non-divergent wind field, with the true parameter vector drawn
-once from the published prior and the observation errors drawn once from the
-published covariance. Nothing about the answer exists online.
+Synthetic data, stated as such in the manifest: a seeded conservative
+finite-volume simulator on the published 4 km grid with a 30 s step and
+region-tagged number on an analytic non-divergent wind, with the truth drawn once from the published
+prior and the errors drawn once from the published covariance. The answer
+exists nowhere online.
 
-The difficulty is that two hard problems have to be solved at the same time
-and each one poisons the other if done carelessly. The first is the forward
-model: a regional transport operator whose numerical diffusion must be
-measured and kept well below the diffusivity being inferred, built on the
-published streamfunction so that its discrete divergence vanishes, coupled
-to a conservative flux through diameter space whose time step is set by the
-narrow small-diameter bins rather than by the Courant number, with
-source-tagged number and an age moment carried alongside for the lineage
-diagnostics. The second is the inference: twelve log-parameters with a
-non-diagonal prior, observation errors that are correlated in time and carry
-a per-deployment bias shared across all channels of an instrument, station-
-specific sizing operators, censored channels below the detection limit, and
-curved valleys between the vapour lifetime, the yield scale, the growth
-coefficient, the particle-loss timescale and the regional source strengths.
+What makes this hard is that a demanding forward model and a demanding
+inference have to be right at the same time, and each hides the other's
+mistakes. The forward model is a regional transport operator whose numerical
+diffusion must be measured and held far below the eddy diffusivity being
+inferred, built on the published streamfunction so its divergence vanishes,
+coupled to a conservative flux through diameter space whose converged step is
+dictated by the narrow small bins rather than the Courant number, and carrying
+tagged number per source region for the shares. The inference is a
+twelve-parameter problem with a non-diagonal prior, station errors that are
+AR(1) in time and carry a per-deployment bias shared across every channel and
+time of an instrument, station-specific sizing operators, censored channels,
+and curved valleys between vapour lifetime, yield, growth coefficient, loss
+timescale and the regional strengths, and between the base strengths and the
+nucleation anomaly.
 
-The graded questions are then derived quantities. The event enhancement is
-not additive in nucleation and condensation, because survival to the grown
-size range depends on growth rate, so the decomposition has to come from
-four full counterfactual re-integrations and not from a linearisation; the
-verifier recomputes all four from the submitted estimate. Its uncertainty
-has to be propagated through that nonlinear map, the same analysis has to be
-repeated with the source strengths clamped to expose how much of the
-uncertainty they carry, and the predictive distributions at the withheld
-rows are scored against the withheld noisy observations with a log score
-that rejects hedging as well as overconfidence. Fitting with a diagonal
-error covariance gives a confident wrong posterior and a chi-square that the
-verifier's recomputation with the full covariance exposes. Using one
-station's sizing operator for another, the Eulerian fallacy of reading a
-station time series as one growing population, and an under-resolved time
-step each fail a different gate.
+The graded quantities are derived. The event enhancement is not additive in
+its two causes because survival into the grown bins depends on growth rate;
+the interaction is a sizeable fraction of the enhancement, so the split must
+come from four full counterfactual re-integrations, which the verifier
+recomputes from the submitted estimate. Its spread must be propagated through
+that nonlinear map, the analysis must be repeated with the regional strengths
+clamped to price them, region shares must come from tagged transport, and the
+predictive spreads at withheld rows are scored against withheld noisy records
+by coverage and a log score that reject both hedging and overconfidence. A
+diagonal-covariance fit yields a chi-square that the recomputation from the
+submitted fitted values exposes; borrowing one station's operator for another,
+the Eulerian fallacy, and an under-resolved step each fail a separate gate.
 
-A domain expert needs several days: build and check the forward model
-against the two published numerical self-tests, assemble the whitened
-objective from the published blocks, run and debug a multi-start
-Gauss-Newton inversion, propagate the posterior onto the counterfactuals and
-the predictions, run the restricted analysis, and check every number before
-believing it.
+An expert needs several days: build and check the forward model against the
+published self-tests and step refinement, assemble the whitened objective,
+run and debug a multi-start Gauss-Newton inversion, propagate the posterior,
+run the restricted analysis and the tagged pass, and audit every number.
 """
 solution_explanation = """
-Read the specification and build the forward model on the public grid with
-face winds from the corner streamfunction and a limited unsplit flux-form
-scheme, then verify it against the uniform-tracer and Gaussian-plume checks
-and against step refinement before fitting anything. The vapour equation
-does not depend on the particle parameters, so a cheap vapour-only fit of
-the diffusivity, entrainment, lifetime, yield and vapour anomaly gives a
-good start for the joint problem.
+Build the forward model on the published grid with face winds from the
+corner streamfunction and an unsplit limited flux-form step, and verify it
+with the uniform-field and Gaussian-blob checks and by halving the step. The
+vapour equation is independent of the particle parameters, so a cheap
+vapour-only fit of diffusivity, entrainment, lifetime, yield and the vapour
+anomaly gives a good start.
 
-Write the objective in the prior's log coordinates, whiten every deployment
-block with the Cholesky factor of its published covariance restricted to the
-usable channels, and whiten the prior term with the Cholesky factor of the
-non-diagonal prior. Levenberg-Marquardt with forward-difference Jacobians
-over all twelve parameters converges in a handful of iterations from
-several starts. The Gauss-Newton Hessian at the optimum gives the posterior
-covariance, the degrees of freedom for signal and the posterior/prior width
-ratios.
+Pose the objective in the prior's log coordinates, whiten each deployment
+block with the Cholesky factor of its published covariance restricted to
+usable channels and the prior term with the Cholesky factor of the prior,
+and run Levenberg-Marquardt with forward-difference Jacobians from that start
+and two random prior draws; it converges in a handful of iterations. The
+Gauss-Newton Hessian gives the posterior covariance, the degrees of freedom
+for signal and the width ratios.
 
-Run the four counterfactuals as full re-integrations over the event days
-with the anomaly log-parameters zeroed in every combination, and propagate
-the posterior onto A_E and A_C by the delta method with a finite-difference
-gradient of the counterfactual map. Repeat the inversion with the three
-source strengths clamped at their prior means and compare the two posterior
-standard deviations. Predictive spreads at the withheld rows are the latent
-Jacobian-propagated variance plus the published marginal error variance and
-a representation floor. A final tagged pass at the estimate yields the
-lineage diagnostics. The reference does all of this in about an hour on
+Run the four counterfactuals as complete re-integrations of the event days
+with the anomaly log-parameters zeroed in every combination, and carry the
+posterior onto A_E and A_C by the delta method with a finite-difference
+gradient of the counterfactual map. Repeat the inversion with the regional
+strengths clamped at their prior means and compare spreads. Predictive
+spreads at withheld rows are the Jacobian-propagated latent variance plus the
+published marginal error and a representation floor. A tagged pass at the
+estimate yields the region shares. The reference takes about half an hour on
 four cores.
 """
 verification_explanation = """
-Ground truth comes from a seeded simulator independent of the reference
-solution, run at twice the public resolution with a shorter step, carrying
-source-tagged number and an age moment; its own counterfactual runs define
-the attribution truth. The reference never produces a graded value.
+Ground truth is a seeded simulator separate from the reference: its own
+implementation of the same equations with a shorter step on the published
+grid, carrying region-tagged number; its own counterfactual runs define the
+attribution truth and its tagged fields define the shares. Every limit also
+allows for a correct scheme with a different flux limiter, whose distance
+from the truth is measured with the generator's solver. The reference never produces a graded value.
 
-The verifier compares withheld vapour and size-distribution predictions, a
-number-weighted diameter derived from them, and both lineage diagnostics
-against that truth, under tolerances calibrated from the measured achievable
-floor, which is the discrepancy between a correct 5 km solver at the true
-parameters and the 2.5 km truth, and from the oracle's own score, with each
-limit required to stay well below the nearest shortcut baseline. Both
-withheld episodes must pass on their own. Predictive spreads are scored
-against the withheld noisy observations by 90 per cent coverage and a
-Gaussian log score, and the posterior by width ratios and degrees of freedom;
-parameter point values are graded only through the published bounds.
-
-Nothing the submission asserts is trusted. The submitted estimate is re-run
-through a trusted forward model on the public grid, which must reproduce
-the submitted predictions, the reported chi-square under the full published
-covariance, and the four submitted counterfactual statistics; the
-attribution and its uncertainty are then checked against the generator's
-truth and a band. The restricted analysis is checked for the variance share
-the source strengths carry and for the posterior correlation between the two
-anomalies. Recorded baselines, climatology, nearest-station copying, the
-prior alone, collapsed and inflated uncertainties, an attribution copied at
-its true values, a linearised attribution, a wrong sizing operator, shuffled
-predictions, a false sensitivity claim and an analysis that never moves the
-anomalies, all score 0. The reward is 1 only if every gate passes, and 0
-otherwise, including on a crash.
+Twelve gates. Withheld vapour, size distributions and a number-weighted
+diameter, and the region shares, are compared with that truth under limits
+set mechanically from the measured floor (the reference solver at the true
+parameters against the generator's discretisation), the oracle's own score and the nearest
+shortcut, by a script that refuses to write a limit that cannot separate
+them; both withheld days must pass alone. Predictive spreads are scored
+against the withheld noisy records by coverage and a Gaussian log score;
+the posterior by width ratios and degrees of freedom. Nothing asserted is
+trusted: a sealed re-run of the submitted estimate must reproduce the
+submitted predictions, fitted values and counterfactual statistics, the
+reported chi-square must equal the one recomputed from the submitted fitted
+values with the full covariance, the decomposition must match the
+generator's counterfactuals within tolerance with its spread inside a band,
+and the restricted analysis must show the measured variance share and
+correlation. Twelve recorded baselines all score 0: climatology, nearest
+station, collapsed and inflated spreads, copied attribution, linearised
+attribution, false sensitivity, shuffled rows, a borrowed operator, frozen
+anomalies, a diagonal-covariance chi-square and constant shares. The reward
+is 1 only when every gate passes, 0 otherwise, including on a crash.
 """
 
 [verifier]

@@ -1,116 +1,128 @@
-# Threshold calibration
+# Limit calibration
 
-Every pass threshold has to clear two bars at once: comfortably above what a
-correct solution achieves, and comfortably below what the cheapest shortcut
-achieves. `set_thresholds.py` applies that test mechanically and refuses to
-write a threshold file if any accuracy limit cannot satisfy both, so none of
-these numbers was chosen to make the oracle pass. The raw inputs it used are
-in `threshold_inputs.json`.
+Every limit clears two bars: comfortably above what a correct solution
+achieves (the measured floor and the oracle's own score) and comfortably
+below the cheapest shortcut that the gate exists to catch. `set_limits.py`
+applies that mechanically and refuses to write `limits.json` if any accuracy
+limit cannot satisfy both; its inputs are in `limit_inputs.json`.
 
 ## The achievable floor
 
-`calibrate.py` runs the reference forward model on the public 5 km grid at the
-true parameters and compares it with the 2.5 km generator truth. No solution
-can do better than this, because the difference is representation error
-between the public grid and the truth, not a modelling mistake.
+`calibrate.py`: the reference solver on the public 4 km grid at the true
+parameters against the 2 km generator truth. No solution can do better;
+the difference is representation error, not a modelling mistake.
 
 | metric | 30 s | 60 s (reference) | 120 s |
 | --- | --- | --- | --- |
-| withheld vapour, log NRMSE | 0.05561 | 0.08221 | 0.597 |
-| withheld size distributions, weighted log RMSE | 0.4119 | 0.4793 | 2.715 |
-| number-weighted diameter MAE, nm | 0.009613 | 0.01068 | 0.08719 |
-| mean particle age MAE, h | 0.1259 | 0.1353 | 0.4294 |
-| source fractions, mean L1 | 0.07169 | 0.08863 | 0.2247 |
-| chi-square at the truth, full covariance | 7108 | 7965 | 3.732e+04 |
+| withheld vapour, log NRMSE | 2.08e-07 | 0.05994 | 0.1821 |
+| withheld size distributions, weighted log RMSE | 3.074e-06 | 0.2932 | 0.9266 |
+| number-weighted diameter MAE, nm | 1.121e-07 | 0.005513 | 0.02074 |
+| domain region shares, L1 | 4.817e-08 | 0.002838 | 0.008598 |
+| station region shares, L1 | 1.816e-08 | 0.002356 | 0.006943 |
+| chi-square at the truth | 7929 | 8619 | 1.669e+04 |
 
-A 30 s step matches or slightly betters the 60 s reference on every metric, so
-60 s is converged and the floor is genuine representation error. A 120 s step
-is under-resolved: every metric degrades five- to seven-fold. The
-specification says so and asks for a convergence check.
+30 s matches 60 s on every quantity; 120 s is under-resolved, as the
+specification discloses.
 
-Per episode at 60 s (vapour NRMSE, size-distribution log RMSE):
+Two other correct solvers were measured at the truth with the generator's own
+code, so that no limit fails a solver for differing from the generator: the
+monotonized-central limiter on the published grid, and Koren's limiter on a
+2 km grid with a 30 s step. Every limit uses the worst of the three floors.
 
-- E01: 0.149, 0.680
-- E02: 0.062, 0.398
-- E03: 0.057, 0.270
-- E04: 0.094, 0.789
-- E05: 0.068, 0.408
-- E06: 0.126, 0.564
-- E07: 0.069, 0.363
-- E08: 0.060, 0.436
-
-The counterfactual event statistics on the public grid at the true parameters
-against the generator's own 2.5 km runs:
-
-| statistic | 5 km at truth | 2.5 km truth | difference |
+| metric | reference scheme | other limiter | 2 km grid |
 | --- | --- | --- | --- |
-| Q00 | 259.52 | 257.16 | +2.36 |
-| Q10 | 373.64 | 370.23 | +3.42 |
-| Q01 | 316.21 | 313.19 | +3.02 |
-| Q11 | 455.77 | 451.39 | +4.38 |
-| A_E | 126.84 | 125.63 | +1.21 |
-| A_C | 69.41 | 68.60 | +0.81 |
+| vapour | 0.05994 | 0.05645 | 0.03118 |
+| size distributions | 0.2932 | 0.2801 | 0.4911 |
+| diameter, nm | 0.005513 | 0.006784 | 0.01315 |
+| domain shares | 0.002838 | 0.00805 | 0.02752 |
+| station shares | 0.002356 | 0.003721 | 0.01777 |
+| chi-square at the truth | 8619 | 8679 | 1.025e+04 |
+| worst counterfactual difference, cm-3 | 0.47 | 0.86 | 13.89 |
+
+Per episode at 60 s (vapour, size distributions):
+
+- E01: 0.078, 0.218
+- E02: 0.073, 0.208
+- E03: 0.054, 0.161
+- E04: 0.058, 0.152
+- E05: 0.077, 0.113
+- E06: 0.089, 0.462
+- E07: 0.049, 0.164
+- E08: 0.049, 0.365
+
+Counterfactual statistics, 4 km solver at the truth against the 2 km runs:
+
+| statistic | 4 km at truth | 2 km truth | difference |
+| --- | --- | --- | --- |
+| Q00 | 388.23 | 388.51 | -0.28 |
+| Q10 | 636.73 | 637.20 | -0.47 |
+| Q01 | 555.48 | 555.61 | -0.13 |
+| Q11 | 912.60 | 912.82 | -0.21 |
+| A_E | 302.82 | 302.95 | -0.13 |
+| A_C | 221.56 | 221.35 | +0.21 |
 
 ## The oracle
 
-Reference scores on the frozen dataset: vapour 0.119, size
-distributions 0.759, diameter 0.0166 nm, age 0.133 h,
-sources 0.108; predictive coverage 0.936 (vapour) and
-0.827 (counts) with log scores -0.77 and -0.26;
-dof_signal 11.86; chi-square 7144.4 over 5376 usable values.
-Attribution A_E 141.0 (truth 125.6) with sd 9.07, restricted
-7.09, variance share 0.39; A_C 62.4 (truth 68.6)
-with sd 1.09; posterior correlation between the nucleation anomaly and
-the strength of region A -0.534.
+Vapour 0.110, size distributions 0.412, diameter 0.0093 nm,
+domain shares 0.012, station shares 0.005; coverage
+0.952 (vapour) and 0.930 (counts) with log scores -0.80 and -0.59;
+dof 11.88; chi-square 8312.5. A_E 256.6 (truth 302.9),
+sd 16.87, restricted 13.90, variance share 0.32; A_C 213.9
+(truth 221.4), sd 3.29; corr(log_s_event, log_sA) -0.571.
 
-The oracle's estimate sits several posterior standard deviations from the
-truth on most parameters (z-scores +26.6, -2.6, -2.2, +0.9, -0.2, -0.4, -2.3, -3.4, -6.9, -3.1, +2.7, -4.9),
-which is the representation error of the 5 km grid absorbed into the
-parameters; see DESIGN_NOTES.md for why point values and credible intervals
-are therefore not graded against the truth.
+Parameter z-scores against the truth: +14.1, +0.7, -1.8, +0.9, -0.0, -3.8, -0.2, +1.3, -0.1, +2.4, -2.5, -4.1.
+Representation error of the 4 km grid is absorbed into the parameters; see
+DESIGN_NOTES.md for why point values are graded only through the bounds.
 
 ## Rules
 
-Accuracy limits: the larger of a multiple of the floor and a multiple of the
-oracle (vapour 4x/2.5x, size distributions 1.8x/1.8x, diameter 4x/2.5x, age
-3x/2.5x, sources 3x/2.5x), required to stay below 0.40 to 0.70 of the nearest
-shortcut. Per-episode limits are 1.6 times the global ones and both withheld
-episodes must pass on their own. Consistency envelopes are twice the
-global limits, eight times the measured floor: they reject numbers unrelated
-to the estimate, not discretisation differences. Coverage band 0.80 to 0.97; log-score limits the
-oracle's plus 0.25; width-ratio bands one third to three times the oracle's
-ratio for the tightest and the two loosest parameters; dof band the oracle's
-minus 1.5 to 12; attribution tolerance the largest of three times the
-oracle's error, four times the floor difference and six per cent of the
-truth; attribution sd band one half to twice the oracle's; variance share
-band the oracle's minus 0.20 to plus 0.15; correlation band the oracle's plus
-or minus 0.22; chi-square report tolerance one per cent, band open below and
-1.5 times the oracle above; counterfactual tolerance the larger of four times
-the oracle's replay discrepancy and twice the floor difference.
+Accuracy limits: the larger of a multiple of the floor and of the oracle
+(vapour 4x/2.5x, size distributions 1.8x/1.8x, diameter 3x/2.5x, shares
+3x/2.5x), below 0.40 to 0.70 of the nearest shortcut. Per-episode limits
+1.6x the global ones, both withheld days alone. Re-run envelopes 2x the
+global limits. Coverage lower bound min(0.80, oracle - 0.05), upper 0.97;
+log-score limits oracle + 0.25; width-ratio bands one third to three times
+the oracle's ratio for the tightest and two loosest parameters; dof band
+oracle - 1.5 to 12; attribution tolerance the largest of 2x the oracle's
+error, 4x the floor difference and 25% of the truth; spread band 0.5x to 2x
+the oracle's; variance-share band oracle - 0.20 to + 0.15; correlation band
+oracle +- 0.22; chi-square report tolerance 1%, ceiling the larger of 1.5x
+the oracle and 1.3x the worst floor; statistic tolerance the largest of 4x
+the oracle's re-run discrepancy, 1.5x the worst floor difference and 1% of
+Q11.
 
-## Chosen thresholds
+## Limits
 
 | limit | value |
 | --- | --- |
-| `vapour_nrmse_max` | 0.3288 |
-| `pnsd_logrmse_max` | 1.366 |
-| `diameter_mae_max_nm` | 0.04273 |
-| `age_mae_max_hr` | 0.4058 |
-| `source_l1_max` | 0.2689 |
-| `episode_vapour_nrmse_max` | 0.5261 |
-| `episode_pnsd_logrmse_max` | 2.186 |
-| `consistency_vapour_max` | 0.6577 |
-| `consistency_pnsd_max` | 2.733 |
-| `coverage_90` | [0.8, 0.97] |
-| `log_score_vapour_max` | -0.5208 |
-| `log_score_counts_max` | -0.006551 |
-| `median_sd_max` | 0.572 |
-| `sd_ratio_bands` | {"log_q_event": [0.0023, 0.021], "log_we": [0.1083, 0.975], "log_taup": [0.04, 0.36]} |
-| `dof_signal` | [10.3595, 12.0] |
-| `attr_tol` | {"A_E": 46.1154, "A_C": 18.4775} |
-| `attr_sd_band` | {"A_E": [4.536, 18.1439], "A_C": [0.5453, 2.181]} |
-| `source_variance_share` | [0.1887, 0.5387] |
-| `corr_band` | [-0.7542, -0.3142] |
-| `chi2_report_tol` | 71.44 |
-| `chi2_band` | [0.0, 10716.6689] |
-| `burden_tol` | 8.757 |
+| `attr_sd_band` | {"A_E": [8.436, 33.7442], "A_C": [1.6455, 6.582]} |
+| `attr_tol` | {"A_E": 92.6645, "A_C": 55.3384} |
+| `chi2_max` | 1.332e+04 |
+| `chi2_report_tol` | 83.12 |
+| `chi2_stream_report_tol` | 83.12 |
+| `consistency_pnsd_max` | 1.768 |
+| `consistency_vapour_max` | 0.5503 |
+| `corr_band` | [-0.7905, -0.3505] |
+| `corr_key` | corr_s_event_sA |
+| `count_valid_min` | 4 |
+| `coverage_counts` | [0.8, 0.97] |
+| `coverage_vapour` | [0.8, 0.97] |
+| `diam_min_total` | 40 |
+| `diameter_max_nm` | 0.03945 |
+| `dof_signal` | [10.3797, 12.0] |
+| `domain_share_l1_max` | 0.08257 |
+| `episode_pnsd_max` | 1.414 |
+| `episode_vapour_max` | 0.4402 |
+| `hard_episodes` | ["E07", "E08"] |
+| `log_score_counts_max` | -0.3423 |
+| `log_score_vapour_max` | -0.5525 |
+| `median_sd_max` | 0.5863 |
+| `pnsd_max` | 0.884 |
+| `sd_ratio_bands` | {"log_q_event": [0.0016, 0.0147], "log_we": [0.0853, 0.7674], "log_taup": [0.0639, 0.5751]} |
+| `sensitivity_key` | A_E |
+| `share_stations` | ["W1", "W2"] |
+| `share_sum_tol` | 0.01 |
+| `source_variance_share` | [0.121, 0.471] |
+| `station_share_l1_max` | 0.05331 |
+| `statistic_tol` | 20.84 |
+| `vapour_max` | 0.2751 |
