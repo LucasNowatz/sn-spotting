@@ -1,0 +1,273 @@
+{
+  "schema_version": "growth-event-1.0",
+  "description": "synthetic regional transport and size-resolved nanoparticle growth system; eight 10 h episodes on a 300 km by 240 km domain with one well-mixed boundary-layer slab; four episodes are event days",
+  "data_origin": "synthetic, from a seeded conservative finite-volume simulator run at 2.5 km with a 30 s step and source-tagged tracers; the public grid is 5 km; the true parameter vector is one draw from the published prior and the observation errors are one draw from the published covariance",
+  "spec": "model_spec.md",
+  "grid": {
+    "nx": 60,
+    "ny": 48,
+    "dx_m": 5000.0,
+    "dy_m": 5000.0,
+    "domain_m": [
+      300000.0,
+      240000.0
+    ]
+  },
+  "time": {
+    "episode_hours": 10.0,
+    "forcing_records": 41,
+    "observation_times": 41,
+    "interval_minutes": 15,
+    "interpolation": "linear between consecutive records",
+    "units": "seconds since 2026-06-15T00:00:00Z"
+  },
+  "size_bins": {
+    "count": 12,
+    "d_min_nm": 1.5,
+    "d_max_nm": 15.0,
+    "spacing": "logarithmic",
+    "file": "size_bins.csv",
+    "operators": "sizing_operators.nc"
+  },
+  "backgrounds": {
+    "c_bg_ug_m3": 0.06,
+    "n_bg_cm3": 0.8
+  },
+  "unknown_parameters": [
+    "log_Kh",
+    "log_we",
+    "log_tauv",
+    "log_Yorg",
+    "log_betaorg",
+    "log_Heff",
+    "log_taup",
+    "log_sA",
+    "log_sB",
+    "log_sC",
+    "log_s_event",
+    "log_q_event"
+  ],
+  "event_statistic": {
+    "grown_channels": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "records": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "episodes": [
+      "E02",
+      "E04",
+      "E06",
+      "E08"
+    ],
+    "definition": "domain mean over all cells of the number in the grown channels, averaged over the listed records, then averaged over the event episodes; cm-3"
+  },
+  "observation": {
+    "detection_limit_cm3": 5.0,
+    "log_floor_counts_cm3": 0.05,
+    "log_floor_vapour_ug_m3": 0.001,
+    "error_covariance": "error_covariance.nc",
+    "representation_floor_counts_log": 0.06,
+    "representation_floor_vapour_log": 0.05,
+    "note": "reported counts are post the station operator; the lineage diagnostics are defined pre-operator"
+  },
+  "split": {
+    "observed_stations": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "withheld_stations": [
+      "W1",
+      "W2"
+    ],
+    "observed_episodes": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "E06"
+    ],
+    "withheld_episodes": [
+      "E07",
+      "E08"
+    ],
+    "event_episodes": [
+      "E02",
+      "E04",
+      "E06",
+      "E08"
+    ]
+  },
+  "episodes": [
+    {
+      "episode": "E01",
+      "status": "observed",
+      "event_day": false,
+      "regime": "warm, deep boundary layer, steady south-westerly",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "3f0e064b97a912384c12663d617e5cdfd5f8cf592674c176be59d7b0906960b0",
+        "forcing.nc": "5dd7ce53dbbf1256967651df457a67c8722c15a4afbdfbe0ee497eae2666dcbc",
+        "observations.nc": "f32972bd1ee0c7548556d577f59cc789b16238dc087b9a8b5c6eff417aabd680"
+      }
+    },
+    {
+      "episode": "E02",
+      "status": "observed",
+      "event_day": true,
+      "regime": "cool, shallow boundary layer, steady westerly; event day",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "2d6ae20cb4e438423c82c1ed767676d9a5cfa2ad033eba4594606733f6ea003b",
+        "forcing.nc": "ca0e586bae234f22910704217d83e687bacf8f589a1f5226fcbfeef346364da8",
+        "observations.nc": "1a4cf40ca1a49e8e30a1029c6701c582428ed52d3830bf17b6a9194c831f1bd5"
+      }
+    },
+    {
+      "episode": "E03",
+      "status": "observed",
+      "event_day": false,
+      "regime": "mild, wind direction rotates 62 degrees",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "b52e4626a9c7d22e5c41fc8b889e0c6a1ad708726f1d8aee050f561c9a4c38e4",
+        "forcing.nc": "255b8701e3022fccdb63e129e016c2b716757e1b408a456aeaa0d0a39efb22e2",
+        "observations.nc": "e12c4f197708709f27172c60314b552a90935e82fe69d06bae828489b1032b58"
+      }
+    },
+    {
+      "episode": "E04",
+      "status": "observed",
+      "event_day": true,
+      "regime": "warm, weak flow with strong eddy mixing; event day",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "80909a14cee4b40918c5cb498e1a77f3ff2979dbedc7bc28d240bb016bbb0dc5",
+        "forcing.nc": "99da8460af3c1c7322da649e9eb6ee4a751b552eefeea6ecd38069b54ff83a20",
+        "observations.nc": "3b03d21506ecbee5abd8c455189c4f0ad8f8bea9e19cb0afeb303742cdb4d855"
+      }
+    },
+    {
+      "episode": "E05",
+      "status": "observed",
+      "event_day": false,
+      "regime": "cool, strongly sheared northern and southern sectors",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "5814cfb9f0beaf1caf47cd02ba43630fe9c670dbd7eae55c478d2d9179b3d088",
+        "forcing.nc": "ece6ccd640aa7312f74fa69f6d85534de8eb7252977ae8201ac197aca79ec183",
+        "observations.nc": "4fa8cde9589e47b061f46659d49f2fcb7a6b341f5d88e6dce9304960ac3129dd"
+      }
+    },
+    {
+      "episode": "E06",
+      "status": "observed",
+      "event_day": true,
+      "regime": "mild, fast transit across the domain; event day",
+      "observed_stations": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "files": {
+        "met.nc": "948453bfc842e401c24f9fe9946b184445b1138aa3f9bd0491667f09385a886f",
+        "forcing.nc": "c868d85910bb3e399a9dc30b2df6b44721c7cc9cb94ce43a35107d56c454df62",
+        "observations.nc": "d7befcee0a1c1aca7832fd32b1af0fadd0d8c8fb56b13b30fa7ab4539ceb5b32"
+      }
+    },
+    {
+      "episode": "E07",
+      "status": "withheld",
+      "event_day": false,
+      "regime": "cool, growing boundary layer, curved sheared flow",
+      "observed_stations": [],
+      "files": {
+        "met.nc": "643b932d2aa5b56812e4c67c579ea05660837f394fa5048208400181669e466f",
+        "forcing.nc": "e82a7fb84b57929c59caf94961f7c2ca72c6d8f66ac38475d9bc9f2d20bf4689",
+        "observations.nc": "9da1d21c0575094fad164f1ed6199cb84dbb4c9530bf3fd6319c4a7071ebde22"
+      }
+    },
+    {
+      "episode": "E08",
+      "status": "withheld",
+      "event_day": true,
+      "regime": "warm, collapsing boundary layer, moderate shear; event day",
+      "observed_stations": [],
+      "files": {
+        "met.nc": "78a03262d5b79626f50a30d094c74b4ae9d7c4cee7555ba12a138bc155241724",
+        "forcing.nc": "bba5a3316a8296a33a940757ff12dc5558832c7a2e3afa259d2c627811cb0c60",
+        "observations.nc": "9da1d21c0575094fad164f1ed6199cb84dbb4c9530bf3fd6319c4a7071ebde22"
+      }
+    }
+  ],
+  "files": {
+    "calibration_index.csv": "1772eef9df1587ca70d99cdeb29fa69c93bc552888a77b30ac2b54e87e905bcf",
+    "episode_index.json": "4373c7c908f46b3a39098901b573bb048ac495131eb9541b2f2fa55bfc366ae6",
+    "error_covariance.nc": "6aca555b0ff2bef13209faa5781cd74dc99eb10f05fca006a3fd8294b3b8c443",
+    "history_queries.csv": "0e710ae6d8f7b423ab19697641959de51e9dfa73d4a608c8029a4d94019a4b75",
+    "model_spec.md": "d62d7781e0d445ae1babdad18e4c644387e28bc67e2389083bee19f0cb81868d",
+    "prediction_index.csv": "2f273cc8fb571b87f88dca7f85824c587de17323c6f92d5646887603a59cb429",
+    "priors.json": "0370b567a00c215b191e55622e785e9ba80c8625615f8500a374586f79a42cef",
+    "size_bins.csv": "1c46aece059fb8a96adabd779eac5f6bb657299868db53873d804806af7e119e",
+    "sizing_operators.nc": "da7765cb2fa197fe5a7c470d11198eb1754387cf0c2be25764d1ea171e5cb0bc",
+    "stations.csv": "7391bbed6c30b95943d86b06ac5bf6896e0fe0fbce6eeef03a753de9c28bc4fb"
+  }
+}

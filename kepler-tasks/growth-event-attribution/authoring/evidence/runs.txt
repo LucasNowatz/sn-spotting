@@ -1,0 +1,17 @@
+Sealed verifier runs against the calibrated thresholds (outside Docker)
+======================================================================
+climatology: 10 failed, 3 passed, 1 warning in 43.13s
+diagonal_chi2: 1 failed, 12 passed, 1 warning in 42.12s
+false_sensitivity: 1 failed, 12 passed, 1 warning in 42.20s
+guessed_attribution: 10 failed, 3 passed, 1 warning in 42.52s
+hedged: 3 failed, 10 passed, 1 warning in 41.42s
+linearised_attribution: 1 failed, 12 passed, 1 warning in 42.11s
+nearest_station: 10 failed, 3 passed, 1 warning in 42.56s
+no_anomaly: 2 failed, 11 passed, 1 warning in 42.98s
+nop: 13 failed in 0.23s
+oracle_1: 13 passed, 1 warning in 43.89s
+oracle_2: 13 passed, 1 warning in 44.96s
+oracle_3: 13 passed, 1 warning in 43.42s
+shuffled_predictions: 6 failed, 7 passed, 1 warning in 42.46s
+wrong_operator: 3 failed, 10 passed, 1 warning in 41.13s
+zero_width: 3 failed, 10 passed, 1 warning in 40.71s
